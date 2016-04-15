@@ -1,0 +1,310 @@
+/*
+Tutorial Name: Bootstrap 4 Tutorial
+Author: Samuel Dalusung
+*/
+
+
+/* GENERAL STYLES
+-------------------------------------------------*/
+body {
+    font-family:'Lato', sans-serif;
+    font-size:1em;
+    color:#777;
+    font-weight:300;
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+h1,h2,h4,h5,h6 {
+    color:#333;
+    line-height:1.4;
+    font-weight:700;
+}
+
+.heading p {
+    font-size: large;
+}
+
+.mx-width {
+    max-width:960px;
+    margin:0 auto;
+}
+
+a,a:hover {
+    color:#563d7c;
+    text-decoration:none;
+}
+
+p {
+    margin: 0 0 25px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+@media(min-width:768px) {
+    p {
+        margin: 0 0 35px;
+        font-size: 20px;
+        line-height: 1.6;
+    }
+}
+
+img{
+  /*width:100%;
+  max-width: 100%;*/
+  height:auto;
+}
+
+.card-img-top{
+  width:100%;
+  height:auto;
+}
+
+header {
+    padding-bottom:20px;
+}
+
+.display-2 {
+    font-family:'Lato';
+    font-size:60px;
+    line-height:1;
+    font-weight:300;
+    color:#fff;
+    padding-top: 60px;
+}
+
+.learn {
+    font-family:'Lato';
+    font-size:27px;
+    line-height:1.4;
+    font-weight:300;
+    color:#fff;
+}
+
+.jumbotron-fluid {
+    padding:0;
+}
+
+.gini {
+    font-size: 70px;
+    font-weight: 700;
+    color: crimson;
+}
+
+.cs-img{
+    max-width: 250px;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+
+/* PARALLAX
+-------------------------------------------------*/
+.parallax {
+    /*text-align:center;*/
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-attachment:fixed!important;
+    overflow:hidden;
+}
+
+.parallax-pattern-overlay {
+    background-image:url(../img/pattern.png);
+    background-repeat:repeat;
+}
+
+#size-banner{
+    height:300px;
+    padding-top:20px;
+}
+
+
+/* HEADING
+-------------------------------------------------*/
+.heading {
+    padding-bottom:15px;
+    text-align:left;/**/
+    max-width:960px;
+    margin:0 auto;
+    padding-top:10px;
+}
+
+.heading h2 {
+    font-weight:600;
+    font-family:'Raleway';
+    font-size:40px;
+    color:#333;
+    margin:0;
+    padding:5px;
+}
+
+
+.heading h3 {
+    font-size:1em;
+    line-height:1.7;
+}
+
+#site-title {
+    max-width:150px;
+}
+
+
+
+/* FOOTER
+-------------------------------------------------*/
+.footer {
+    background: #000000;
+    margin-top:120px;
+    position:relative
+}
+
+.footer .container {
+    padding:60px 0 20px;
+}
+
+.footer ul {
+    margin:0 auto;
+    margin-bottom:30px;
+    margin-top:10px;
+    text-align:center;
+    list-style-type:none;
+    padding-left:0;
+}
+
+.footer ul li {
+	text-align:center;
+    display:inline-block;
+    background:rgba(0,0,0,0.2);
+    color:#fff;
+    line-height:45px;
+    margin:0 4px;
+    width:45px!important;
+    height:45px!important;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+}
+
+.footer ul li:hover {
+    background:#2a2a2a;
+}
+
+.footer ul li:hover	a {
+    color:#fff;
+}
+
+.footer ul li a {
+    color:#fff;
+    width:42px!important;
+    height:42px!important;
+}
+
+.footer ul li a i {
+    line-height:45px;
+    color:#fff;
+}
+
+.footer p {
+    color:#fff;
+    font-size: 14px;
+    line-height:24px;
+    font-weight:300;
+    text-align:center;
+}
+
+.footer a,.footer a:hover {
+    color:#fff;
+}
+
+.features{
+    background-color: gainsboro;
+}
+
+.us-choro,.cali-choro,.conclusion {
+    background-color: rgba(244, 244, 244, 0.43);
+}
+
+#i-dis-img {
+    padding-left: 35px;
+}
+
+.usmap {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.one {
+    font-size: 32px;
+    color: crimson;
+}
+
+.two {
+    font-size: 20px;
+    color: green;
+}
+
+.three {
+    font-size: 28px;
+    color: pink;
+}
+
+
+/* NAVBAR
+-------------------------------------------------*/
+.navbar-brand a, .menu-bck {
+    padding: 4px 6px;
+    font-size: 16px;
+    color: #fff;
+}
+
+
+
+
+/* MEDIA QUERIES
+-------------------------------------------------*/
+
+@media screen and (max-width:768px) {
+
+    .navbar-custom {
+        padding: 20px 0;
+        border-bottom: 0;
+        letter-spacing: 1px;
+       /**/ background: 0 0;
+        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+
+    .menu-bck, .menu-container {
+        background: black;
+    }
+
+
+    .navbar-custom.top-nav-collapse {
+        padding: 0;
+        border-bottom: 1px solid rgba(255,255,255,.3);
+        background: #000;
+    }
+
+
+input.intro.col-md-6{
+    width:40.5%;
+    margin: 15px 15px 0 58px;
+}
+
+textarea.intro.col-md-12 {
+     margin: 15px 15px 0 58px;
+}
+
+button#submit.intro.submit{
+    margin: 15px 15px 0 42px;
+}
+
+}
+
+
+
+
