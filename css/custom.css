@@ -303,6 +303,10 @@ button#submit.intro.submit{
     margin: 15px 15px 0 42px;
 }
 
+.dividerline,.usmap,.calimap,.motion {
+    max-width: 450px;
+}
+
 }
 
 
