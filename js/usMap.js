@@ -20,7 +20,7 @@ USMap.prototype.initVis = function(){
 
     vis.margin = {top: 30, right: 10, bottom: 10, left: 10};
 
-    vis.width = 1200 - vis.margin.left - vis.margin.right,
+    vis.width = 760 - vis.margin.left - vis.margin.right,
     vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
     vis.svg = d3.select("#usa-map").append("svg")
@@ -37,7 +37,7 @@ USMap.prototype.initVis = function(){
     //Define map projection
     vis.projection = d3.geo.albersUsa()
         .translate([vis.width/2, vis.height/2])
-        .scale([1500]);
+        .scale([1000]);
 
     //Define default path generator
     vis.path = d3.geo.path()
@@ -161,13 +161,4 @@ USMap.prototype.updateColors = function(keyVar){
 
 
 
-    d3.select("div#usa-map")
-        .append("div")
-        .classed("svg-container", true) //container class to make it responsive
-        .append("svg")
-        //responsive SVG needs these 2 attributes and no width and height attr
-        .attr("preserveAspectRatio", "xMinYMin meet")
-        .attr("viewBox", "0 0 600 400")
-        //class to make it responsive
-        .classed("svg-content-responsive", true);
 }
