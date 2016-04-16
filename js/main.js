@@ -30,3 +30,77 @@ $('.navbar-collapse ul li a').click(function() {
         $('.navbar-toggle:visible').click();
     }
 });
+
+//allData Global var not used currently - may be of use later?
+//var allData = [];
+
+//variables for vis instance - not used now, might need to set the json map file to one of these or something
+//var usmap;
+//var camap;
+
+//Call load data
+loadData();
+
+// Load JSON + CSV files
+function loadData() {
+
+    // Use the Queue.js library to read in three files
+    queue()
+        .defer(d3.json, "data/us.json")
+        .defer(d3.csv, "data/stateInequality.csv")
+        .defer(d3.csv, "data/caInequality.csv")
+        .await(function(error, usMap, csvUS, csvCA){
+
+            // Convert strings to numeric and create variables for US Data
+            //console.log(csvUS);
+            csvUS.forEach(function(d){
+
+                // Convert numeric values to 'numbers'
+                d.gini                 = +d.gini;
+                d.realIncWage          = +d.realIncWage;
+                d.pctTechnicalWorker   = +d.pctTechnicalWorker;
+                d.unemployementRate    = +d.unemployementRate;
+                d.realIncWageRat90_10  = +d.realIncWageRat90_10
+                d.laborSupply_hl       = +d.laborSupply_hl;
+                d.realIncWageRat_cg_hs = +d.realIncWageRat_cg_hs;
+                d.year                 = +d.year;
+                d.statefip             = +d.statefip;
+            });
+
+            // Convert strings to numeric and create variables for CA Data
+            //console.log(csvCA);
+            csvCA.forEach(function(d){
+
+                // Convert numeric values to 'numbers'
+                d.gini                 = +d.gini;
+                d.realIncWage          = +d.realIncWage;
+                d.pctTechnicalWorker   = +d.pctTechnicalWorker;
+                d.unemployementRate    = +d.unemployementRate;
+                d.realIncWageRat90_10  = +d.realIncWageRat90_10
+                d.laborSupply_hl       = +d.laborSupply_hl;
+                d.realIncWageRat_cg_hs = +d.realIncWageRat_cg_hs;
+                d.year                 = +d.year;
+                d.countyfip            = +d.countyfip;
+            });
+
+            //Create second json file for CA vis. I think there was an issue with both vis objects trying to hit the
+            //same json file, not sure though.
+            var caMap = usMap;
+
+            //Pass in processed data here
+            createVis(usMap, caMap, csvUS, csvCA);
+        });
+};
+
+
+function createVis(usMap, caMap, csvUS, csvCA) {
+
+    // Create object instances
+    //console.log(csvUS);
+    var usMap = new USMap("usa-map", usMap, csvUS);
+
+    //console.log(csvCA);
+    var caMap = new CAMap("ca-map", caMap, csvCA);
+}
+
+
