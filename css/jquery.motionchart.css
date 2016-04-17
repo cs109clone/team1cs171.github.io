@@ -24,9 +24,9 @@
 }
 .mchart .title{
 	float: left;
-	margin-left: 96px;
+	margin-left: 0px;
 	font-size: 25px;
-	margin-top: 6px;
+	margin-top: -26px;
 	padding: 4px;
 }
 .mchart .title:hover{
@@ -253,4 +253,12 @@ text {
 }
 .header .btn-group::after {
 	clear: none;
+}
+
+.btn-group {
+	display: none;
+}
+
+.myMenuTestSub {
+	display: none;
 }

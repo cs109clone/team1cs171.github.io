@@ -31,6 +31,8 @@ $('.navbar-collapse ul li a').click(function() {
     }
 });
 
+
+
 //allData Global var not used currently - may be of use later?
 //var allData = [];
 
@@ -101,6 +103,8 @@ function createVis(usMap, caMap, csvUS, csvCA) {
 
     //console.log(csvCA);
     var caMap = new CAMap("ca-map", caMap, csvCA);
+
+
 }
 
 

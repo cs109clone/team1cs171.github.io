@@ -134,7 +134,6 @@ USMap.prototype.wrangleData = function(){
         .enter().append("path")
         .attr("d", vis.path)
         .style("fill", function(d) {
-            console.log(d);
             if ( isNaN(keyById[d.id]) === true  ) {
                 return "#ccc";
             } else {
