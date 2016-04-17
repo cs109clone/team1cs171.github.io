@@ -74,7 +74,7 @@ CAMap.prototype.wrangleData = function(){
     var vis = this;
 
     //get current keyVar value from dropdown
-    var keyVar = d3.select("#stat-type").property("value");
+    var keyVar = d3.select("#stat-type2").property("value");
     console.log(keyVar);
 
 
@@ -121,7 +121,7 @@ CAMap.prototype.wrangleData = function(){
     //JQuery to update Colors on dropdown change, pass in new value of dropdown selection
     $(document).ready(function() {
 
-        $('#stat-type').on('change', function() {
+        $('#stat-type2').on('change', function() {
             var keyVar = this.value;
             vis.updateColors (keyVar);
         });
