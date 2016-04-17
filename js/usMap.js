@@ -124,6 +124,8 @@ USMap.prototype.wrangleData = function(){
         });
     });
 
+     d3.select(vis.frameElement).style("height", vis.height + "px");
+
 }
 
 /*=================================================================
@@ -162,3 +164,5 @@ USMap.prototype.updateColors = function(keyVar){
 
 
 }
+
+
