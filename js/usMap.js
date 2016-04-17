@@ -20,7 +20,8 @@ USMap.prototype.initVis = function(){
 
     vis.margin = {top: 30, right: 10, bottom: 10, left: 10};
 
-    vis.width = 760 - vis.margin.left - vis.margin.right,
+
+    vis.width = /*760*/ parseInt(document.getElementById("usa-map").offsetWidth) - vis.margin.left - vis.margin.right,
     vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
     vis.svg = d3.select("#usa-map").append("svg")
@@ -124,7 +125,6 @@ USMap.prototype.wrangleData = function(){
         });
     });
 
-     d3.select(vis.frameElement).style("height", vis.height + "px");
 
 }
 
