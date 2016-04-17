@@ -230,7 +230,7 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 col-centered text-center">
-					<div class="motionchart" style="height:800px;"></div>
+					<div id="motionchart"></div>
 				</div>
 			</div>
 		</div>
@@ -2100,7 +2100,31 @@ $(function () {
 console.log(sdata);
 
 
-	$('.motionchart').motionchart({
+	if (parseInt(getWidth()) <= 768) {
+
+		document.getElementById('motionchart').style.height = '300px';
+		document.getElementById('motionchart').style.width = '500px'
+
+	} else {
+		document.getElementById('motionchart').style.height = '700px';
+		document.getElementById('motionchart').style.width = '900px'
+	}
+
+	function getWidth() {
+		if (self.innerWidth) {
+			return self.innerWidth;
+		}
+		else if (document.documentElement && document.documentElement.clientHeight){
+			return document.documentElement.clientWidth;
+		}
+		else if (document.body) {
+			return document.body.clientWidth;
+		}
+		return 0;
+	}
+
+
+	$('#motionchart').motionchart({
 		title: "State Wage Inequality with GINI index",
 		'data': sdata,
 		mappings: {key: 1, x: 4, y: 3, size: 2, color: 0, category: 0},
