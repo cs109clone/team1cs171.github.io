@@ -20,14 +20,20 @@ USMap.prototype.initVis = function(){
 
     vis.margin = {top: 30, right: 10, bottom: 10, left: 10};
 
+    vis.width = /*1000*/ parseInt(document.getElementById("usa-map").clientWidth) - vis.margin.left - vis.margin.right;
+
+
     //Allows map to resize////////////////////////////////////////
     //converted scale into variable called theScale
     var theScale;
 
     if (parseInt(getWidth()) <= 768) {
         theScale = 500;
+            vis.margin.top = 200,
+            vis.margin.bottom = 200;
+
     } else {
-        theScale = 1000;
+        theScale = 1500;
     }
 
     function getWidth() {
@@ -48,7 +54,7 @@ USMap.prototype.initVis = function(){
     /////////////////////////////////////////////////////////////////////
 
 
-    vis.width = /*1000*/ parseInt(document.getElementById("usa-map").offsetWidth) - vis.margin.left - vis.margin.right,
+
     vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
     vis.svg = d3.select("#usa-map").append("svg")
@@ -129,7 +135,8 @@ USMap.prototype.wrangleData = function(){
         .data(usa)
         .enter().append("path")
         .attr("d", vis.path)
-        .style("fill", function(d) { 
+        .style("fill", function(d) {
+            console.log(d);
             if ( isNaN(keyById[d.id]) === true  ) {
                 return "#ccc";
             } else {
