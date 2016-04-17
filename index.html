@@ -230,7 +230,7 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 col-centered text-center">
-					<div id="motionchart"></div>
+					<div class="motionchart" style="width:900px; height:700px;"></div>
 				</div>
 			</div>
 		</div>
@@ -2097,34 +2097,9 @@ $(function () {
 		["   Wyoming   ",   2013 ,    54080.55  ,    0.333     ,    3.632     ,    38.4 ,    4.609     ,    4.600     ,    1.414     ,    0.737     ,    0.698     ],
 		["   Wyoming   ",   2014 ,    54138.47  ,    0.326     ,    3.000     ,    40.1 ,    4.163     ,    4.793     ,    1.302     ,    0.766     ,    0.655     ],
 	];
-console.log(sdata);
 
 
-	if (parseInt(getWidth()) <= 768) {
-
-		document.getElementById('motionchart').style.height = '300px';
-		document.getElementById('motionchart').style.width = '500px'
-
-	} else {
-		document.getElementById('motionchart').style.height = '700px';
-		document.getElementById('motionchart').style.width = '900px'
-	}
-
-	function getWidth() {
-		if (self.innerWidth) {
-			return self.innerWidth;
-		}
-		else if (document.documentElement && document.documentElement.clientHeight){
-			return document.documentElement.clientWidth;
-		}
-		else if (document.body) {
-			return document.body.clientWidth;
-		}
-		return 0;
-	}
-
-
-	$('#motionchart').motionchart({
+	$('.motionchart').motionchart({
 		title: "State Wage Inequality with GINI index",
 		'data': sdata,
 		mappings: {key: 1, x: 4, y: 3, size: 2, color: 0, category: 0},
