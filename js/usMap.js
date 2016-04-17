@@ -20,8 +20,35 @@ USMap.prototype.initVis = function(){
 
     vis.margin = {top: 30, right: 10, bottom: 10, left: 10};
 
+    //Allows map to resize////////////////////////////////////////
+    //converted scale into variable called theScale
+    var theScale;
 
-    vis.width = /*760*/ parseInt(document.getElementById("usa-map").offsetWidth) - vis.margin.left - vis.margin.right,
+    if (parseInt(getWidth()) <= 768) {
+        theScale = 500;
+    } else {
+        theScale = 1000;
+    }
+
+    function getWidth() {
+        if (self.innerWidth) {
+            return self.innerWidth;
+        }
+        else if (document.documentElement && document.documentElement.clientHeight){
+            return document.documentElement.clientWidth;
+        }
+        else if (document.body) {
+            return document.body.clientWidth;
+        }
+        return 0;
+    }
+
+    //replaced width of 1000px with the width of the div (detected on page load) Note: the primary purpose is to resize for mobile
+    //otherwise site look awkward and out of wack on mobile
+    /////////////////////////////////////////////////////////////////////
+
+
+    vis.width = /*1000*/ parseInt(document.getElementById("usa-map").offsetWidth) - vis.margin.left - vis.margin.right,
     vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
     vis.svg = d3.select("#usa-map").append("svg")
@@ -38,7 +65,7 @@ USMap.prototype.initVis = function(){
     //Define map projection
     vis.projection = d3.geo.albersUsa()
         .translate([vis.width/2, vis.height/2])
-        .scale([1000]);
+        .scale([theScale]);
 
     //Define default path generator
     vis.path = d3.geo.path()
