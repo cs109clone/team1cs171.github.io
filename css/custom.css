@@ -55,7 +55,7 @@ img{
   height:auto;
 }
 
-#usa-map {
+#usa-map,#motionchart {
     max-width:100% !important;
 
 }/**/
