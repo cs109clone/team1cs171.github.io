@@ -22,15 +22,16 @@ USMap.prototype.initVis = function(){
 
     vis.width = /*1000*/ parseInt(document.getElementById("usa-map").clientWidth) - vis.margin.left - vis.margin.right;
 
+    vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
     //Allows map to resize////////////////////////////////////////
-    //converted scale into variable called theScale
+    //converted scale into variable called theScale & the vis.height variable is overridden
     var theScale;
 
     if (parseInt(getWidth()) <= 768) {
+
         theScale = 500;
-            vis.margin.top = 200,
-            vis.margin.bottom = 200;
+        vis.height = 250;
 
     } else {
         theScale = 1500;
@@ -53,9 +54,6 @@ USMap.prototype.initVis = function(){
     //otherwise site look awkward and out of wack on mobile
     /////////////////////////////////////////////////////////////////////
 
-
-
-    vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
     vis.svg = d3.select("#usa-map").append("svg")
         .attr("width", vis.width + vis.margin.left + vis.margin.right)
