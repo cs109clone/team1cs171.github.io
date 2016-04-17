@@ -265,7 +265,7 @@ text {
 
 @media screen and (max-width:768px) {
 
-	.mchart .chart {
+	div.content .motionchart .chart {
 		width : 50%;
 		height: 50%;
 	}
