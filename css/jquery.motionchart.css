@@ -262,3 +262,12 @@ text {
 .myMenuTestSub {
 	display: none;
 }
+
+@media screen and (max-width:768px) {
+
+	.mchart .chart {
+		width : 50%;
+		height: 50%;
+	}
+
+}
