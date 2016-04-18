@@ -18,8 +18,8 @@ CAMap = function(_parentElement, _map, _data){
 CAMap.prototype.initVis = function(){
     var vis = this;
 
-    $("#group-one").hide();
-    $("#group-two").show();
+    $("#group-one").show();
+    $("#group-two").hide();
 
     vis.margin = {top: 30, right: 10, bottom: 10, left: 10};
 
