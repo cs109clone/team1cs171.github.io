@@ -263,11 +263,17 @@ text {
 	display: none;
 }
 
+.motionchart {
+	width:900px;
+	height:700px;
+}
+
 @media screen and (max-width:768px) {
 
-	div.content .motionchart .chart {
-		width : 50%;
-		height: 50%;
+	.motionchart {
+		width:600px;
+		height:467px;
 	}
+
 
 }
