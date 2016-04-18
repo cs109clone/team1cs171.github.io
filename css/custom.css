@@ -134,7 +134,7 @@ header {
 .heading {
     padding-bottom:15px;
     text-align:left;/**/
-    max-width:960px;
+    /*max-width:960px;*/
     margin:0 auto;
     padding-top:10px;
 }
@@ -364,7 +364,7 @@ button#submit.intro.submit{
     margin: 15px 15px 0 42px;
 }
 
-.dividerline,.usmap,.calimap,.motion {
+.dividerline {
     max-width: 450px;
 }
 
