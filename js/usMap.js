@@ -34,7 +34,7 @@ USMap.prototype.initVis = function(){
         vis.height = 250;
 
     } else {
-        theScale = 1500;
+        theScale = 1200;
     }
 
     function getWidth() {
