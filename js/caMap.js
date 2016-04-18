@@ -20,6 +20,8 @@ CAMap.prototype.initVis = function(){
 
     $("#group-one").show();
     $("#group-two").hide();
+    $("#viewTwo").css("color", "gray");
+    $("#viewOne").css("color", "crimson");
     document.getElementById("viewcloud").innerHTML= '<a href="#" data-toggle="modal" data-target="#myModal1">View WordCloud</a>';
 
     vis.margin = {top: 30, right: 10, bottom: 10, left: 10};
@@ -182,6 +184,8 @@ CAMap.prototype.wrangleData = function(){
         $('#viewOne').on('click', function (e) {
             $("#group-one").show();
             $("#group-two").hide();
+            $("#viewTwo").css("color", "gray");
+            $("#viewOne").css("color", "crimson");
             document.getElementById("viewcloud").innerHTML= '<a href="#" data-toggle="modal" data-target="#myModal1">View WordCloud</a>';
 
             return false;
@@ -190,6 +194,8 @@ CAMap.prototype.wrangleData = function(){
         $('#viewTwo').on('click', function (e) {
             $("#group-one").hide();
             $("#group-two").show();
+            $("#viewOne").css("color", "gray");
+            $("#viewTwo").css("color", "crimson");
             document.getElementById("viewcloud").innerHTML= '<a href="#" data-toggle="modal" data-target="#myModal2">View WordCloud</a>';
 
             return false;
