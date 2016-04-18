@@ -257,6 +257,10 @@ header {
     color: pink;
 }
 
+.wrapper {
+    width: 100% !important;
+}
+
 
 /* NAVBAR
 -------------------------------------------------*/
