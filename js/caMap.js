@@ -38,7 +38,7 @@ CAMap.prototype.initVis = function(){
     //EITHER FIND CA MAP OR FIX ZOOM OR FILTER JSON OR SOMETHING!
     vis.projection = d3.geo.albersUsa()
         .translate([1100,350])
-        .scale([3000]);
+        .scale([3200]);
 
     //Define default path generator
     vis.path = d3.geo.path()
@@ -76,6 +76,9 @@ CAMap.prototype.wrangleData = function(){
     vis.keyYear = parseInt(d3.select("#timeslide2").property("value"));
     console.log(vis.keyYear);
 
+     vis.theYear = d3.select("#getgini").property("value");
+
+
     // Convert TopoJSON to GeoJSON
     var usa = topojson.feature(vis.usMap, vis.usMap.objects.counties).features;
 
@@ -83,11 +86,21 @@ CAMap.prototype.wrangleData = function(){
     //console.log(vis.csvCA);
 
     //Set up empty array and then push the relevent year objects into it
+
     var countyDataYear = [];
     for(var i = 0; i < vis.csvCA.length; i++ ) {
         if (vis.csvCA[i].year === vis.keyYear) {
             countyDataYear.push(vis.csvCA[i]);
         }
+
+        if (vis.csvCA[i].county == "Los Angeles" & vis.csvCA[i].year == "1998") {
+            document.getElementById("la").innerHTML=vis.csvCA[i].gini;
+        }
+
+        if (vis.csvCA[i].county == "Santa Clara" & vis.csvCA[i].year == "1998"){
+            document.getElementById("santaclara").innerHTML=vis.csvCA[i].gini;
+        }
+
     }
     console.log(countyDataYear);
 
@@ -137,6 +150,28 @@ CAMap.prototype.wrangleData = function(){
             vis.keyYear = parseInt(this.value);
             $('#range2').text(vis.keyYear);
             vis.updateColors();
+        });
+
+        $('#getgini').on('change', function() {
+            vis.theYear = parseInt(this.value);
+
+            for(var i = 0; i < vis.csvCA.length; i++ ) {
+
+                if (vis.csvCA[i].year == vis.theYear){
+                    //Update each field
+                    //update #la 18  update santaclara 5
+
+                    if (vis.csvCA[i].county == "Los Angeles") {
+                        document.getElementById("la").innerHTML=vis.csvCA[i].gini;
+                    }
+
+                    if (vis.csvCA[i].county == "Santa Clara"){
+                        document.getElementById("santaclara").innerHTML=vis.csvCA[i].gini;
+                    }
+
+                }
+            }
+
         });
 
     });
