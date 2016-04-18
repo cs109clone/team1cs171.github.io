@@ -113,6 +113,10 @@ header {
     color: crimson;
 }
 
+.dividerline {
+    max-width: 450px;
+}
+
 
 /* PARALLAX
 -------------------------------------------------*/
@@ -379,10 +383,6 @@ textarea.intro.col-md-12 {
 
 button#submit.intro.submit{
     margin: 15px 15px 0 42px;
-}
-
-.dividerline {
-    max-width: 450px;
 }
 
 #amountTo,#amountToNext {
