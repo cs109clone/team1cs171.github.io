@@ -11,15 +11,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
 
- <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/custom.css">
+	 <!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link href="css/jquery-ui-1.8.20.custom.css" rel="stylesheet">
+	<link href="css/jquery.handsontable.css" rel="stylesheet">
+	<link href="css/jquery.motionchart.css" rel="stylesheet">
+	<link href="css/jquery.contextMenu.css" rel="stylesheet">
 
- <!-- Fonts -->
-<link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,700,900' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+	<!-- Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,700,900' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 
 </head>
 
@@ -234,7 +241,9 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 col-centered text-center">
-					<img src="img/motion.png" />
+
+
+					<div class="motionchart" style="width:900px; height:700px;"></div>
 				</div>
 			</div>
 		</div>
@@ -279,20 +288,39 @@
 <script src="js/topojson.js"></script>
 <script src="js/d3.min.js"></script>
 <script src="js/d3.tip.js"></script>
-<script src="js/jquery.easing.min.js"></script>
+
 
 <!-- Visualization objects -->
 <script src="js/usMap.js"></script>
 <script src="js/caMap.js"></script>
 
 
-<!-- Load data, create visualizations-->
+<!-- Load data, create motion visualizations-->
+<script src="js/loadStateData.js"></script>
 <script src="js/main.js"></script>
+
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/dependencies.min.js"></script>
+<script src="js/custom-bootstrap.js"></script>
+<script src="js/jquery.handsontable.js"></script>
+<script src="js/jquery.motionchart.js"></script>
 
 <script type="text/javascript">
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
-})	
+})
+
+
+$('.motionchart').motionchart({
+	title: "State Wage Inequality with GINI index",
+	'data': data,
+	mappings: {key: 1, x: 4, y: 3, size: 2, color: 0, category: 0},
+	colorPalette: {	"Blue-Red": {from: "rgb(0,0,255)", to: "rgb(255,0,0)"}},
+	color: "Red-Blue",
+	play: false,
+	loop: true
+});
 
 </script>
 

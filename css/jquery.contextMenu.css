@@ -17,7 +17,7 @@
     padding:0;
     
     min-width: 220px;
-    max-width: 100px;
+    max-width: 200px;
     display: inline-block;
     position: absolute;
     list-style-type: none;
@@ -87,12 +87,12 @@
     .context-menu-item.icon:before {}
  */
 .context-menu-item.icon { min-height: 18px; background-repeat: no-repeat; background-position: 4px 2px; }
-.context-menu-item.icon-edit { background-image: url("../../resources/page_white_edit.png.html"); }
-.context-menu-item.icon-cut { background-image: url("images/cut.png.html"); }
-.context-menu-item.icon-copy { background-image: url("images/page_white_copy.png.html"); }
-.context-menu-item.icon-paste { background-image: url("images/page_white_paste.png.html"); }
-.context-menu-item.icon-delete { background-image: url("images/page_white_delete.png.html"); }
-.context-menu-item.icon-quit { background-image: url("images/door.png.html"); }
+.context-menu-item.icon-edit { background-image: url(../../../resources/page_white_edit.png); }
+.context-menu-item.icon-cut { background-image: url(images/cut.png); }
+.context-menu-item.icon-copy { background-image: url(images/page_white_copy.png); }
+.context-menu-item.icon-paste { background-image: url(images/page_white_paste.png); }
+.context-menu-item.icon-delete { background-image: url(images/page_white_delete.png); }
+.context-menu-item.icon-quit { background-image: url(images/door.png); }
 
 /* vertically align inside labels */
 .context-menu-input > label > * { vertical-align: top; }

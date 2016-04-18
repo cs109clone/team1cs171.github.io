@@ -88,12 +88,14 @@
             build: function() {
                 var temp; //Holds jQuery objects that are not significant enough to place in priv.dom
                 priv.dom.$header = $("<div class='header'>" + "<div class='title'>" + "    " + priv.settings.title + "</div>" + "</div>").appendTo(container);
-                priv.dom.$tabs = $("<div class='btn-group' data-toggle='buttons-radio'>" + "    <button class='btn btn-large btn-warning active'>Chart</button>" + "    <button class='btn btn-large btn-warning'>Data</button>" + "</div>").prependTo(priv.dom.$header);
-                priv.dom.$about = $("<div style='float:right'>"  + "</div>").appendTo(priv.dom.$header);
-               // priv.dom.$about = $("<div style='float:right'>" + "    <button class='btn btn-large btn-danger about'>About</button>" + "</div>").appendTo(priv.dom.$header);
+                //Billy Comment out     priv.dom.$tabs = $("<div class='btn-group' data-toggle='buttons-radio'>" + "    <button class='btn btn-large btn-warning active'>Chart</button>" + "    <button class='btn btn-large btn-warning'>Data</button>" + "</div>").prependTo(priv.dom.$header);
+                priv.dom.$tabs = $("").prependTo(priv.dom.$header);
+                priv.dom.$about = $("").appendTo(priv.dom.$header);
+                //Billy comment out priv.dom.$about = $("<div style='float:right'>" + "    <button class='btn btn-large btn-danger about'>About</button>" + "</div>").appendTo(priv.dom.$header);
                 priv.dom.$content = $("<div class='content'>" + "</div>").appendTo(container);
                 priv.dom.$chart = $("    <div class='chart' id='tab0'>" + "    </div>").appendTo(priv.dom.$content);
-                priv.dom.$menu = $("        <div class='myMenuTestSub'>" + "            <div></div>" + "        </div>").appendTo(priv.dom.$chart);
+                priv.dom.$menu = $("").appendTo(priv.dom.$chart);
+                //Billy comment out priv.dom.$menu = $("        <div class='myMenuTestSub'>" + "            <div></div>" + "        </div>").appendTo(priv.dom.$chart);
                 priv.dom.$svg = $("        <div class='svg'></div>").appendTo(priv.dom.$chart);
                 priv.dom.$timeline = $("        <div class='timeline'>" + "        </div>").appendTo(priv.dom.$chart);
                 priv.dom.$play = $("            <div class='control-button playpause play'></div>").appendTo(priv.dom.$timeline);
@@ -129,10 +131,12 @@
                     change: function(event, ui) {
                         duration = ui.value;
                         priv.dom.$mainSlider.slider("option", "animate", ui.value);
+                        priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show"); // Billy added
                         if (priv.playing) {
                             // Click twice to reinitialise play speed
                             priv.dom.$play.trigger("click");
                             priv.dom.$play.trigger("click");
+                            priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show"); // Billy added
                         }
                     }
                 });
@@ -195,6 +199,7 @@
                 priv.dom.$content.outerHeight(container.height() - priv.dom.$header.outerHeight(true));
 
                 priv.dom.$svg.outerHeight(priv.dom.$chart.height() - priv.dom.$timeline.height());
+                priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show"); // Billy added
 
                 priv.dom.$mainSlider.outerWidth(priv.dom.$timeline.width() - (priv.dom.$play.outerWidth(true) + priv.dom.$timeline.find('.speed-control').outerWidth(true) + priv.dom.$control.width() + parseInt(priv.dom.$mainSlider.css('margin-right'), 10) + parseInt(priv.dom.$mainSlider.css('margin-left'), 10) + 2)); //TODO: More efficient way?
             },
@@ -221,6 +226,7 @@
 
                         priv.dom.$mainSlider.outerWidth(priv.dom.$timeline.width() - (priv.dom.$play.outerWidth(true) + priv.dom.$timeline.find('.speed-control').outerWidth(true) + priv.dom.$control.width() + parseInt(priv.dom.$mainSlider.css('margin-right'), 10) + parseInt(priv.dom.$mainSlider.css('margin-left'), 10) + 2)); //TODO: More efficient way?
                         chart.resize();
+                        priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show"); // Billy added
                     }
                 });
             },
@@ -432,7 +438,7 @@
                 });
 
                 //Y-Axis Menu
-                $.contextMenu({
+              $.contextMenu({
                     selector: "text.y.label",
                     trigger: "none",
                     build: function($trigger) {
@@ -489,11 +495,16 @@
                     }
                 });
 
+      
+
                 //Sliding Popover Menu Scaling
                 /**
                  *    Note: Class name has to be MapEnum.$name+'Map', so x would be xScale and color would be colorScale
                  *    These elements (td) must only have one class.
                  **/
+
+
+                
                 $.contextMenu({
                     selector: ".xScale, .yScale, .sizeScale, .colorScale",
                     trigger: "none",
@@ -523,12 +534,15 @@
                         };
                     }
                 });
+                
 
                 //Sliding Popover Menu Coloring
                 /**
                  *    Note: Class name has to be MapEnum.$name+'Map', so x would be xScale and color would be colorScale
                  *    These elements (td) must only have one class.
                  **/
+
+                
                 $.contextMenu({
                     selector: ".colorColorMap",
                     trigger: "none",
@@ -558,6 +572,7 @@
                         };
                     }
                 });
+                
 
             }
         };
@@ -607,11 +622,11 @@
 						$parent = $this.parent();
 					
 					if (! $this.hasClass('edit')) {
-						var currentText = $this.text();
+						var currentText = $this.text().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); //escape html special chars
 						$this.replaceWith('<input class="title edit" value = "'+currentText+'"/>');
 						$parent.children('input').focus()
 												 .blur(function(){
-													var newText = $(this).val();
+													var newText = $(this).val().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); //escape html special chars TODO: trim to chars to fit div
 													$(this).replaceWith('<div class="title">'+((newText==='') ? settings.title : newText)+'</div>');
 												});
 					}
@@ -631,9 +646,10 @@
                         clearInterval(playInstance);
                         $(this).toggleClass("play").toggleClass("pause");
                         priv.playing = false;
+                        priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show"); // Billy added
                         setTimeout(function() {
-                            $(".slider a.ui-slider-handle").tooltip("hide");
-                        }, 1000);
+                            $(".slider a.ui-slider-handle").tooltip("show");
+                        }, 100000);
                     }
                     else if (index === max) { //Slider is already at maximum. 
 						if (priv.settings.loop) {
@@ -646,8 +662,8 @@
 						else { //show tooltip then return without doing anything.
 							priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show");
 							setTimeout(function() {
-								priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("hide");
-							}, 1000);
+								priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show");
+							}, 100000);
 							priv.playing = false;
 						}
                     }
@@ -672,10 +688,10 @@
                     }
                 });
 
-                priv.dom.$about.click(function(e) {
-                    e.stopImmediatePropagation();
-                    window.location.href = "http://wiki.stat.ucla.edu/socr/index.php/SOCR_HTML5_MotionCharts";
-                });
+               // priv.dom.$about.click(function(e) {
+                 //   e.stopImmediatePropagation();
+              //      window.location.href = "http://wiki.stat.ucla.edu/socr/index.php/SOCR_HTML5_MotionCharts";
+             //   });
 
 
                 // Skip to beginning button
@@ -685,6 +701,7 @@
                         min = priv.dom.$mainSlider.slider("option", "min"); // Minimum value of slider (and of key)
                     if (index > min) {
 						priv.dom.$mainSlider.slider("value", min);
+                        priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show"); // Billy added
 					}
                 });
 
@@ -695,6 +712,7 @@
                         min = priv.dom.$mainSlider.slider("option", "min"); // Minimum value of slider (and of key)
                     if (index > min) {
 						priv.dom.$mainSlider.slider("value", --index);
+                        priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show"); // Billy added
 					}
                 });
 
@@ -705,6 +723,7 @@
                         max = priv.dom.$mainSlider.slider("option", "max"); // Maximum value of slider (and of key)
                     if (index < max) {
 						priv.dom.$mainSlider.slider("value", ++index);
+                        priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show"); // Billy added
 					}
                 });
 
@@ -715,6 +734,7 @@
                         max = priv.dom.$mainSlider.slider("option", "max"); // Maximum value of slider (and of key)
                     if (index < max) {
 						priv.dom.$mainSlider.slider("value", max);
+                        priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show"); // Billy added
 					}
                 });
             },
@@ -841,7 +861,7 @@
                         for (i = 0; i < mappingNames.length; i++) //Add map image to each dimension
                         {
                             items[i] = {
-                                name: mappingNames[i].substring(0, 12),
+                                name: mappingNames[i].substring(0, 40),
                                 callback: function(key) {
                                     controller.maps.setMap(MapEnumValue, key);
                                 }
@@ -852,7 +872,7 @@
                         for (i = 0; i < mappingNames.length; i++) //Add map image to each dimension
                         {
                             items[i] = {
-                                name: mappingNames[i].substring(0, 12),
+                                name: mappingNames[i].substring(0, 40),
                                 callback: function(key) {
                                     controller.maps.setMap($('.context-menu-root>.context-menu-submenu.hover').index(), key);
                                 }
@@ -866,7 +886,7 @@
                     for (i in priv.settings.colorPalette) {
 						if(priv.settings.colorPalette.hasOwnProperty(i)) {
 							items[i] = {
-								name: i.substring(0, 12),
+								name: i.substring(0, 40),
 								callback: function(key) {
 									controller.maps.setColor(MapEnum.color, key);
 								}
@@ -1115,8 +1135,12 @@
                 // Add the year label; the value is set on transition.
                 label = svg.append("text").attr("class", "year label").attr("text-anchor", "end").attr("y", height - 24).attr("x", width);
 
+
+
+
 				// Set the browser
 				priv.ie9 = navigator.userAgent.indexOf("Trident") !== -1;
+
             },
 			/**
 			 *	Resize SVG including individual components to fit container
@@ -1143,8 +1167,13 @@
                 // Finally move all circles to their new respective positions
                 node.attr("transform", function(d) {
                     return "translate(" + xScale(chart.x(d)) + //set x postion
-									"," + yScale(chart.y(d)) + ")";	//set y position  
-                });               
+									"," + yScale(chart.y(d)) + ")";	//set y position
+
+                });
+
+
+
+
             },
 			/**
 			 *	Extracts data from handsontable and nests it
@@ -1152,6 +1181,7 @@
 			 */
             updateData: function() {
                 var i, csvSampleValues, data, csvFormat;
+
 				
 				// Get data from data table
 				data = 	priv.dom.$table.handsontable('getNonEmptyData');
@@ -1184,13 +1214,21 @@
                 // Select all circles in SVG. If keyIndex is not defined (Called by updateMapping) use current data. Otherwise Bind them to data with current key values.
                 if (keyIndex !== undefined) {
                     node = svg.selectAll(".node").data(d3.values(nest)[keyIndex]);
+
                 }
 
                 // Enter
                 circle = node.enter().append("g").attr("class", "node").append("circle").attr("class", "circle");
 
+
                 // Transition/Update
                 node.transition().duration(duration).ease("linear").attr("transform", function(d) {
+                    d3.select(this).classed('selected', true);
+                    d3.select(this).append('text').attr("text-anchor", "middle").attr("dy", ".3em").text(function(d) {
+                        if (chart.category(d)) {
+                            return chart.category(d).substring(0, radiusScale(chart.radius(d)) / 2);
+                        }
+                    });
                     return "translate(" + xScale(chart.x(d)) + "," + yScale(chart.y(d)) + ")";
                 }).select('circle').attr("r", function(d) {
                     return radiusScale(chart.radius(d));
@@ -1203,7 +1241,7 @@
 
                 // Update text
                 node.select('text').text(function(d) {
-                    return chart.category(d).substring(0, radiusScale(chart.radius(d)) / 3);
+                    return chart.category(d).substring(0, radiusScale(chart.radius(d)) / 2);
                 });
 
                 // Re/set popovers
@@ -1221,13 +1259,15 @@
                         d3.select(this).classed('selected', false);
                     }
                     else {
-                        d3.select(this).append('text').attr("text-anchor", "middle").attr("dy", ".3em").text(function(d) {
+                       d3.select(this).append('text').attr("text-anchor", "middle").attr("dy", ".3em").text(function(d) {
                             if (chart.category(d)) {
-								return chart.category(d).substring(0, radiusScale(chart.radius(d)) / 3);
+								return chart.category(d).substring(0, radiusScale(chart.radius(d)) / 2);
 							}
                         });
                         d3.select(this).classed('selected', true);
+
                     }
+
                 });
 
             },
@@ -1278,6 +1318,7 @@
                     // Update Slider
                     priv.dom.$mainSlider.slider("option", "max", d3.values(nest).length - 1);
                     priv.dom.$mainSlider.slider("value", 0); //Reset Slider
+                    priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip("show"); // Billy added
                     d3.entries(nest).forEach(function(d) {
                         thisArray.push(d.key);
                     });
@@ -1290,7 +1331,7 @@
                         thisArray.push(chart.x(d));
                     })).rangePoints([0, width]) : d3.scale.linear().domain(d3.extent(csv, chart.x)).range([0, width]);
                     xAxis.call(xAxisOrient.scale(xScale).tickFormat(null)); // Reset tick formatting to default
-                    xLabel.text(mappingNames[mappingID[MapEnum.x]].substring(0,12));
+                    xLabel.text(mappingNames[mappingID[MapEnum.x]].substring(0,30));
                     circle.transition().duration(duration).ease("linear").attr("cx", function(d) {
                         return xScale(chart.x(d));
                     }); //set x postion
@@ -1302,7 +1343,7 @@
                         thisArray.push(chart.y(d));
                     })).rangePoints([height, 0]) : d3.scale.linear().domain(d3.extent(csv, chart.y)).range([height, 0]);
                     yAxis.call(yAxisOrient.scale(yScale).tickFormat(null));
-                    yLabel.text(mappingNames[mappingID[MapEnum.y]].substring(0, 12));
+                    yLabel.text(mappingNames[mappingID[MapEnum.y]].substring(0, 30));
                     circle.transition().duration(duration).ease("linear").attr("cy", function(d) {
                         return yScale(chart.y(d));
                     }); //set y position
@@ -1555,7 +1596,7 @@
         minHeight: 300,
 		loop: false,
 		play: false,
-        speed: 3000,
+        speed: 1000,
         colorPalette: {
             "Red-Blue": {
                 from: "rgb(255,0,0)",
