@@ -3,15 +3,15 @@
 <html lang="en">
 <head>
 
-<title>Team Inventum Final Project (cs171)</title>
- <!-- Required meta tags always come first -->
-    <meta charset="utf-8">
-    <meta name="author" content="Team Inventum">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Team Inventum Final Project (cs171)</title>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="author" content="Team Inventum">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
 
 
-	 <!-- Bootstrap CSS -->
+	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/custom.css">
 	<link href="css/jquery-ui-1.8.20.custom.css" rel="stylesheet">
@@ -67,17 +67,17 @@
 
 	<!--header-->
 	<header>
-	<div class="jumbotron jumbotron-fluid" id="banner">		
-		<div class="parallax" style="background-image: url(img/cover.jpg);">
-			<div class="parallax-pattern-overlay">
-				<div class="container" id="size-banner">
-					<!--<a href="#"><img id="site-title" src="img/logo.png" alt="logo"/></a>-->
-					<h2 class="display-2">Economic Inequality</h2>
-					<h3 class="learn">and the Tech Effect</h3>
+		<div class="jumbotron jumbotron-fluid" id="banner">
+			<div class="parallax" style="background-image: url(img/cover.jpg);">
+				<div class="parallax-pattern-overlay">
+					<div class="container" id="size-banner">
+						<!--<a href="#"><img id="site-title" src="img/logo.png" alt="logo"/></a>-->
+						<h2 class="display-2">Economic Inequality</h2>
+						<h3 class="learn">and the Tech Effect</h3>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</header>
 
 	<!--INTRO-->
@@ -137,9 +137,9 @@
 					<div id="usa-map"> </div>
 					<!--Mike added slider-->
 					<div id="sliderContainer">
-                        <input id="timeslide" type="range" min="1980" max="2014" value="1980" step="1"/><br>
-                        <span id="range">1980</span>
-                    </div>
+						<input id="timeslide" type="range" min="1980" max="2014" value="1980" step="1"/><br>
+						<span id="range">1980</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -188,19 +188,19 @@
 					<div class="card card-inverse card-primary text-center">
 						<div class="card-block">
 							<img class="cs-img" src="img/place.png" /> <!--inequality image maybe 250px x 250px -->
-						<!--</div>
-					</div>
-				</div>-->
+				<!--</div>
+            </div>
+        </div>-->
 
 				<div id="group-one">
 					<div class="col-lg-5">
 						<div class="card card-inverse card-success text-center">
-						  <!--<img class="card-img-top" src="img/card3.jpg" alt="Card image cap">-->
-						  <div class="card-block">
-							<div class="gini" id="santaclara"></div>
-							  <h4 class="card-title" id="county-one">Santa Clara County</h4>
-							<p class="card-text">Te sit possit facilis nusquam. No vocibus facilisis adolescens mei. Audire scaevola efficiantur ad vel.</p>
-						</div>
+							<!--<img class="card-img-top" src="img/card3.jpg" alt="Card image cap">-->
+							<div class="card-block">
+								<div class="gini" id="santaclara"></div>
+								<h4 class="card-title" id="county-one">Santa Clara County</h4>
+								<p class="card-text">Te sit possit facilis nusquam. No vocibus facilisis adolescens mei. Audire scaevola efficiantur ad vel.</p>
+							</div>
 						</div>
 					</div>
 
@@ -208,12 +208,12 @@
 
 					<div class="col-lg-5">
 						<div class="card card-inverse card-info text-center">
-						  <!--<img class="card-img-top" src="img/card4.jpg" alt="Card image cap">-->
-						  <div class="card-block">
-							  <div class="gini" id="la"></div>
-							<h4 class="card-title" id="county-two">LA County</h4>
-							<p class="card-text">Vel porro quaeque ne. Vim eu elitr vitae deserunt, at quod novum adipiscing has. Nec etiam commune eloquentiam an.</p>
-						</div>
+							<!--<img class="card-img-top" src="img/card4.jpg" alt="Card image cap">-->
+							<div class="card-block">
+								<div class="gini" id="la"></div>
+								<h4 class="card-title" id="county-two">LA County</h4>
+								<p class="card-text">Vel porro quaeque ne. Vim eu elitr vitae deserunt, at quod novum adipiscing has. Nec etiam commune eloquentiam an.</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -243,6 +243,52 @@
 					</div>
 				</div>
 
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<!-- Modal Santa Clara Companies-->
+					<div id="myModal1" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<a href="#" class="close" data-dismiss="modal">&times;</a>
+									<h4 class="modal-title">Santa Clara Tech Companies</h4>
+								</div>
+								<div class="modal-body">
+									<img class="img-responsive" src="img/santaclara.png" alt="...">
+								</div>
+								<div class="modal-footer">
+									<a href="#" type="button" class="btn btn-default" data-dismiss="modal">Close</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- Modal San Mateo Companies -->
+					<div id="myModal2" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<a href="#" class="close" data-dismiss="modal">&times;</a>
+									<h4 class="modal-title">San Mateo Tech Companies</h4>
+								</div>
+								<div class="modal-body">
+									<img class="img-responsive" src="img/sanmateo.png" alt="...">
+								</div>
+								<div class="modal-footer">
+									<a href="#" type="button" class="btn btn-default" data-dismiss="modal">Close</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div id="viewcloud"></div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -275,14 +321,14 @@
 					</form><!---->
 					<!--<div id="calimap"><img src="img/cali-choro.png" alt=""></div>-->
 					<div class="col-md-4" id="ca-map">
-				</div>			
-			    <!--Mike added slider-->
-			    <div id="sliderContainer2">
-                  <input id="timeslide2" type="range" min="1996" max="2014" value="1996" step="1"/><br>
-                  <span id="range2">1996</span>
-              </div>
+					</div>
+					<!--Mike added slider-->
+					<div id="sliderContainer2">
+						<input id="timeslide2" type="range" min="1996" max="2014" value="1996" step="1"/><br>
+						<span id="range2">1996</span>
+					</div>
+				</div>
 			</div>
-		</div>
 	</section>
 
 	<!--TECH EFFECT-->
@@ -310,7 +356,7 @@
 				<div class="col-lg-8">
 					<div class="heading">
 						<img class="dividerline" src="img/sep.png" alt="">
-							<h2>Conclusion</h2>
+						<h2>Conclusion</h2>
 						<img class="dividerline" src="img/sep.png" alt="">
 						<p><span class="three">Ex qui</span> quando tritani <span class="one">singulis</span>, stet prodesset ei <span class="tow">eum</span>. Eu doming fabulas vis. Ea ius <span class="one">dico saepe</span>, amet referrentur <span class="two">comprehensam</span> vel in, eum <span class="one">tale</span> vulputate et. Usu natum primis eu, discere <span class="three">cotidieque</span> mea ne, sed at case mundi graeci. Per <span class="one">vero vidisse</span> at, et cum graeco nostrum, id minim <span class="two">clita petentium</span> sea. Ne commodo alienum <span class="one">iudicabit</span> pri, ex sed vidit quando <span class="three">apeirian</span>. </p>
 					</div>
@@ -329,11 +375,11 @@
 			</div>
 		</div>
 	</section>
-	
+
 </div><!--wrapper end-->
 
 
- <!-- JavaScripts -->
+<!-- JavaScripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <script src="js/bootstrap.min.js"></script>
@@ -361,20 +407,20 @@
 <script src="js/jquery.easing.min.js"></script>
 
 <script type="text/javascript">
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
 
 
-$('.motionchart').motionchart({
-	title: "State Wage Inequality with GINI index",
-	'data': data,
-	mappings: {key: 1, x: 4, y: 3, size: 2, color: 0, category: 0},
-	colorPalette: {	"Blue-Red": {from: "rgb(0,0,255)", to: "rgb(255,0,0)"}},
-	color: "Red-Blue",
-	play: false,
-	loop: true
-});
+	$('.motionchart').motionchart({
+		title: "State Wage Inequality with GINI index",
+		'data': data,
+		mappings: {key: 1, x: 4, y: 3, size: 2, color: 0, category: 0},
+		colorPalette: {	"Blue-Red": {from: "rgb(0,0,255)", to: "rgb(255,0,0)"}},
+		color: "Red-Blue",
+		play: false,
+		loop: true
+	});
 
 </script>
 
