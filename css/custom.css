@@ -372,6 +372,10 @@ button#submit.intro.submit{
     max-width: 450px;
 }
 
+#amountTo {
+    display: none;
+}
+
 }
 
 

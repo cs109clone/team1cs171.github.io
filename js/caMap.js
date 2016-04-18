@@ -87,6 +87,9 @@ CAMap.prototype.wrangleData = function(){
 
     //Set up empty array and then push the relevent year objects into it
 
+     var santaClara;
+     var losAngeles;
+
     var countyDataYear = [];
     for(var i = 0; i < vis.csvCA.length; i++ ) {
         if (vis.csvCA[i].year === vis.keyYear) {
@@ -94,14 +97,26 @@ CAMap.prototype.wrangleData = function(){
         }
 
         if (vis.csvCA[i].county == "Los Angeles" & vis.csvCA[i].year == "1998") {
-            document.getElementById("la").innerHTML=vis.csvCA[i].gini;
+            losAngeles = vis.csvCA[i].gini;
+            document.getElementById("la").innerHTML= losAngeles;
         }
 
         if (vis.csvCA[i].county == "Santa Clara" & vis.csvCA[i].year == "1998"){
-            document.getElementById("santaclara").innerHTML=vis.csvCA[i].gini;
+            santaClara = vis.csvCA[i].gini;
+            document.getElementById("santaclara").innerHTML=santaClara;
         }
 
     }
+
+     if (santaClara > losAngeles ) {
+         document.getElementById("amountTo").innerHTML=">";
+     } else if (santaClara < losAngeles) {
+         document.getElementById("amountTo").innerHTML="<";
+     } else {
+         document.getElementById("amountTo").innerHTML="=";
+     }
+
+
     console.log(countyDataYear);
 
     //Create objects that can map to the county Fips code
@@ -162,17 +177,31 @@ CAMap.prototype.wrangleData = function(){
                     //update #la 18  update santaclara 5
 
                     if (vis.csvCA[i].county == "Los Angeles") {
-                        document.getElementById("la").innerHTML=vis.csvCA[i].gini;
+
+                        losAngeles = vis.csvCA[i].gini;
+                        document.getElementById("la").innerHTML= losAngeles;
                     }
 
                     if (vis.csvCA[i].county == "Santa Clara"){
-                        document.getElementById("santaclara").innerHTML=vis.csvCA[i].gini;
+                        santaClara = vis.csvCA[i].gini;
+                        document.getElementById("santaclara").innerHTML= santaClara;
+                    }
+
+                    if (santaClara > losAngeles ) {
+                        document.getElementById("amountTo").innerHTML=">";
+                    } else if (santaClara < losAngeles) {
+                        document.getElementById("amountTo").innerHTML="<";
+                    } else {
+                        document.getElementById("amountTo").innerHTML="=";
                     }
 
                 }
             }
 
         });
+
+
+
 
     });
 
