@@ -18,6 +18,9 @@ CAMap = function(_parentElement, _map, _data){
 CAMap.prototype.initVis = function(){
     var vis = this;
 
+    $("#group-one").hide();
+    $("#group-two").show();
+
     vis.margin = {top: 30, right: 10, bottom: 10, left: 10};
 
     vis.width = 400 - vis.margin.left - vis.margin.right,
@@ -89,6 +92,8 @@ CAMap.prototype.wrangleData = function(){
 
      var santaClara;
      var losAngeles;
+     var sanMateo;
+     var sonoma;
 
     var countyDataYear = [];
     for(var i = 0; i < vis.csvCA.length; i++ ) {
@@ -106,6 +111,16 @@ CAMap.prototype.wrangleData = function(){
             document.getElementById("santaclara").innerHTML=santaClara;
         }
 
+        if (vis.csvCA[i].county == "San Mateo" & vis.csvCA[i].year == "1998"){
+            sanMateo= vis.csvCA[i].gini;
+            document.getElementById("sanmateo").innerHTML=sanMateo;
+        }
+
+        if (vis.csvCA[i].county == "Sonoma" & vis.csvCA[i].year == "1998"){
+            sonoma = vis.csvCA[i].gini;
+            document.getElementById("sonoma").innerHTML=sonoma;
+        }
+
     }
 
      if (santaClara > losAngeles ) {
@@ -116,6 +131,13 @@ CAMap.prototype.wrangleData = function(){
          document.getElementById("amountTo").innerHTML="=";
      }
 
+     if (sanMateo > sonoma ) {
+         document.getElementById("amountToNext").innerHTML=">";
+     } else if (sanMateo < sonoma) {
+         document.getElementById("amountToNext").innerHTML="<";
+     } else {
+         document.getElementById("amountToNext").innerHTML="=";
+     }
 
     console.log(countyDataYear);
 
@@ -156,6 +178,18 @@ CAMap.prototype.wrangleData = function(){
     //JQuery to update Colors on dropdown change or timeslide change, pass in new value of dropdown selection and year
     $(document).ready(function() {
 
+        $('#viewOne').on('click', function (e) {
+            $("#group-one").show();
+            $("#group-two").hide();
+            return false;
+        })
+
+        $('#viewTwo').on('click', function (e) {
+            $("#group-one").hide();
+            $("#group-two").show();
+            return false;
+        })
+
         $('#stat-type2').on('change', function() {
             vis.keyVar = this.value;
             vis.updateColors();
@@ -168,6 +202,8 @@ CAMap.prototype.wrangleData = function(){
         });
 
         $('#getgini').on('change', function() {
+
+
             vis.theYear = parseInt(this.value);
 
             for(var i = 0; i < vis.csvCA.length; i++ ) {
@@ -177,14 +213,27 @@ CAMap.prototype.wrangleData = function(){
                     //update #la 18  update santaclara 5
 
                     if (vis.csvCA[i].county == "Los Angeles") {
-
                         losAngeles = vis.csvCA[i].gini;
                         document.getElementById("la").innerHTML= losAngeles;
+
                     }
 
                     if (vis.csvCA[i].county == "Santa Clara"){
                         santaClara = vis.csvCA[i].gini;
                         document.getElementById("santaclara").innerHTML= santaClara;
+
+                    }
+
+                    if (vis.csvCA[i].county == "San Mateo"){
+                        sanMateo = vis.csvCA[i].gini;
+                        document.getElementById("sanmateo").innerHTML= sanMateo;
+
+                    }
+
+                    if (vis.csvCA[i].county == "Sonoma"){
+                        sonoma = vis.csvCA[i].gini;
+                        document.getElementById("sonoma").innerHTML= sonoma;
+
                     }
 
                     if (santaClara > losAngeles ) {
@@ -195,12 +244,18 @@ CAMap.prototype.wrangleData = function(){
                         document.getElementById("amountTo").innerHTML="=";
                     }
 
+                    if (sanMateo > sonoma ) {
+                        document.getElementById("amountToNext").innerHTML=">";
+                    } else if (sanMateo < sonoma) {
+                        document.getElementById("amountToNext").innerHTML="<";
+                    } else {
+                        document.getElementById("amountToNext").innerHTML="=";
+                    }
+
                 }
             }
 
         });
-
-
 
 
     });

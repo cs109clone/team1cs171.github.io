@@ -91,9 +91,11 @@ header {
 }
 
 .gini {
+
     font-size: 70px;
     font-weight: 700;
     color: crimson;
+
 }
 
 .cs-img{
@@ -105,6 +107,11 @@ header {
     margin: 0 auto;
 }
 
+#view-control {
+    font-size: 28px;
+    font-weight: 400;
+    color: crimson;
+}
 
 
 /* PARALLAX
@@ -262,6 +269,7 @@ header {
 }
 
 
+
 /* NAVBAR
 -------------------------------------------------*/
 .navbar-brand a, .menu-bck {
@@ -372,8 +380,12 @@ button#submit.intro.submit{
     max-width: 450px;
 }
 
-#amountTo {
+#amountTo,#amountToNext {
     display: none;
+}
+
+#view-control {
+    font-size: 18px;
 }
 
 }
