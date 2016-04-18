@@ -145,6 +145,64 @@
 		</div>
 	</section>
 
+	<!--TECH EFFECT-->
+	<section class="tech-effect" id="tech-effect">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="heading">
+						<h2>Tech Effect in Motion</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="motionchart"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--CALIFORNIA CHOROPLETH-->
+	<section class="cali-choro" id="cali-choro">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="heading">
+						<h2>California by Counties</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-centered text-center">
+					<form class="form-inline">
+						<div class="form-group">
+							<label for="rankingType">Metric</label>
+							<select class="form-control" id="stat-type2">
+								<option value="gini">Gini</option>
+								<option value="realIncWage">Average Income</option>
+								<option value="pctTechnicalWorker">Percent High Tech Workers</option>
+								<option value="unemployementRate">Unemployment Rate</option>
+								<option value="realIncWageRat90_10">90-10 Wage Ratio</option>
+								<option value="laborSupply_hl">High-Low Skilled Labor Ratio</option>
+								<option value="realIncWageRat_cg_hs">College to High School Wage Ratio</option>
+							</select>
+						</div>
+					</form><!---->
+					<!--<div id="calimap"><img src="img/cali-choro.png" alt=""></div>-->
+					<div class="col-md-4" id="ca-map">
+					</div>
+					<!--Mike added slider-->
+					<div id="sliderContainer2">
+						<input id="timeslide2" type="range" min="1996" max="2014" value="1996" step="1"/><br>
+						<span id="range2">1996</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
 	<!--CALI CASE-->
 	<section class="cali-case" id="cali-case">
 		<div class="container">
@@ -293,61 +351,6 @@
 		</div>
 	</section>
 
-	<!--CALIFORNIA CHOROPLETH-->
-	<section class="cali-choro" id="cali-choro">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8">
-					<div class="heading">
-						<h2>California by Counties</h2>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12 col-centered text-center">
-					<form class="form-inline">
-						<div class="form-group">
-							<label for="rankingType">Metric</label>
-							<select class="form-control" id="stat-type2">
-								<option value="gini">Gini</option>
-								<option value="realIncWage">Average Income</option>
-								<option value="pctTechnicalWorker">Percent High Tech Workers</option>
-								<option value="unemployementRate">Unemployment Rate</option>
-								<option value="realIncWageRat90_10">90-10 Wage Ratio</option>
-								<option value="laborSupply_hl">High-Low Skilled Labor Ratio</option>
-								<option value="realIncWageRat_cg_hs">College to High School Wage Ratio</option>
-							</select>
-						</div>
-					</form><!---->
-					<!--<div id="calimap"><img src="img/cali-choro.png" alt=""></div>-->
-					<div class="col-md-4" id="ca-map">
-					</div>
-					<!--Mike added slider-->
-					<div id="sliderContainer2">
-						<input id="timeslide2" type="range" min="1996" max="2014" value="1996" step="1"/><br>
-						<span id="range2">1996</span>
-					</div>
-				</div>
-			</div>
-	</section>
-
-	<!--TECH EFFECT-->
-	<section class="tech-effect" id="tech-effect">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8">
-					<div class="heading">
-						<h2>Tech Effect in Motion</h2>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="motionchart"></div>
-				</div>
-			</div>
-		</div>
-	</section>
 
 	<!--INSIGHT/CONCLUSION-->
 	<section class="conclusion" id="conclusion">
