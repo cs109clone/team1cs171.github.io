@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+>
+<!-- Meta Needed to force IE out of Quirks mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--StyleSheets-->
+<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">  
+<link href="css/jquery-ui-1.8.20.custom.css" rel="stylesheet"> 
+<link href="css/jquery.handsontable.css" rel="stylesheet">
+<link href="css/jquery.motionchart.css" rel="stylesheet">
+<link href="css/jquery.contextMenu.css" rel="stylesheet">
+<!--Scripts-->
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/dependencies.min.js"></script>
+<script src="js/custom-bootstrap.js"></script>
+<script src="js/jquery.handsontable.js"></script>
+<script src="js/jquery.motionchart.js"></script>
+</head>
+<body>
+
+<!-- <form class="form-inline">
+    <div class="form-group">
+        <label>X Axis : </label>
+        <select class="form-control" id="state-X">
+            <option value=1>State</option>
+            <option value=4 selected="selected">Gini</option>
+            <option value=3>Average Income</option>
+            <option value=5>Percent High Tech Workers</option>
+            <option value=6>Unemployment Rate</option>
+            <option value=7>90-10 Wage Ratio</option>
+            <option value=8>High-Low Skilled Labor Ratio</option>
+            <option value=9>College to High School Wage Ratio</option>
+            <option value=10>Female Wage Rate</option>
+        </select>
+        <label>Y Axis : </label>
+        <select class="form-control" id="state-Y">
+            <option value="1">State</option>
+            <option value="4">Gini</option>
+            <option value="3">Average Income</option>
+            <option value="5" selected="selected">Percent High Tech Workers</option>
+            <option value="6">Unemployment Rate</option>
+            <option value="7">90-10 Wage Ratio</option>
+            <option value="8">High-Low Skilled Labor Ratio</option>
+            <option value="9">College to High School Wage Ratio</option>
+            <option value="10">Female Wage Rate</option>
+        </select>
+    </div>
+</form> -->
+
+<br>
+
+
+<script src="js/loadStateData.js"></script>
+
+<div class="motionchart" style="width:900px; height:700px;"></div>
+<script>
+
+
+
+
+    
+    $('.motionchart').motionchart({
+					title: "State Wage Inequality with GINI index",
+					'data': data,
+					mappings: {key: 1, x: 4, y: 3, size: 2, color: 0, category: 0},
+					colorPalette: {	"Blue-Red": {from: "rgb(0,0,255)", to: "rgb(255,0,0)"}},
+					color: "Red-Blue",
+					play: false,
+					loop: true
+				});
+</script>
+</body>
+</html>
