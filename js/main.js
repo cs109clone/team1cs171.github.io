@@ -31,15 +31,6 @@ $('.navbar-collapse ul li a').click(function() {
     }
 });
 
-
-
-//allData Global var not used currently - may be of use later?
-//var allData = [];
-
-//variables for vis instance - not used now, might need to set the json map file to one of these or something
-//var usmap;
-//var camap;
-
 //Call load data
 loadData();
 
@@ -103,8 +94,6 @@ function createVis(usMap, caMap, csvUS, csvCA) {
 
     //console.log(csvCA);
     var caMap = new CAMap("ca-map", caMap, csvCA);
-
-
 }
 
 

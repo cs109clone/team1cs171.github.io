@@ -32,7 +32,7 @@ CAMap.prototype.initVis = function(){
 
     //Set colorscale range
     vis.colorScale = d3.scale.quantize()
-        .range(colorbrewer.Blues[6]);
+        .range(colorbrewer.Purples[6]);
 
     //Define map projection
     //EITHER FIND CA MAP OR FIX ZOOM OR FILTER JSON OR SOMETHING!
@@ -54,11 +54,7 @@ CAMap.prototype.initVis = function(){
 CAMap.prototype.wrangleData = function(){
     var vis = this;
 
-    //Filter data  to 2014
-    vis.countyData = vis.csvCA.filter(function (value, index) {
-            return (value.year === 2014);
-    });
-    //console.log(vis.countyData);
+    //No data wrangling needed here for now
 
     // Update the visualization
     vis.updateVis();
@@ -74,26 +70,37 @@ CAMap.prototype.wrangleData = function(){
     var vis = this;
 
     //get current keyVar value from dropdown
-    var keyVar = d3.select("#stat-type2").property("value");
-    console.log(keyVar);
+    vis.keyVar = d3.select("#stat-type2").property("value");
 
+    //get current year value from slider
+    vis.keyYear = parseInt(d3.select("#timeslide2").property("value"));
+    console.log(vis.keyYear);
 
     // Convert TopoJSON to GeoJSON
     var usa = topojson.feature(vis.usMap, vis.usMap.objects.counties).features;
 
     //console.log(usa);
-    console.log(vis.countyData);
+    //console.log(vis.csvCA);
 
-    //Create objects that can map to the state Fips code
+    //Set up empty array and then push the relevent year objects into it
+    var countyDataYear = [];
+    for(var i = 0; i < vis.csvCA.length; i++ ) {
+        if (vis.csvCA[i].year === vis.keyYear) {
+            countyDataYear.push(vis.csvCA[i]);
+        }
+    }
+    console.log(countyDataYear);
+
+    //Create objects that can map to the county Fips code
     var keyById = {};
-    vis.countyData.forEach(function(d) { 
-        keyById[d.countyfip] = d[keyVar];
+    countyDataYear.forEach(function(d) { 
+        keyById[d.countyfip] = d[vis.keyVar];
     });
     console.log(keyById);
 
     //Color scale domain
     vis.colorScale.domain(
-        d3.extent(d3.values(vis.countyData), function(d) { return d[keyVar]; })
+        d3.extent(d3.values(countyDataYear), function(d) { return d[vis.keyVar]; })
     );
 
     //Draw map
@@ -118,35 +125,51 @@ CAMap.prototype.wrangleData = function(){
       .attr("class", "boundary")
       .attr("d", vis.path);
 
-    //JQuery to update Colors on dropdown change, pass in new value of dropdown selection
+    //JQuery to update Colors on dropdown change or timeslide change, pass in new value of dropdown selection and year
     $(document).ready(function() {
 
         $('#stat-type2').on('change', function() {
-            var keyVar = this.value;
-            vis.updateColors (keyVar);
+            vis.keyVar = this.value;
+            vis.updateColors();
         });
+
+        $('#timeslide2').on('change', function() {
+            vis.keyYear = parseInt(this.value);
+            $('#range2').text(vis.keyYear);
+            vis.updateColors();
+        });
+
     });
 
 }
 
 /*=================================================================
-* Update Colors etc. with new keyVar
+* Update Colors etc. with new keyVar/keyYear
 *=================================================================*/
-CAMap.prototype.updateColors = function(keyVar){
+CAMap.prototype.updateColors = function(){
     var vis = this;
+    console.log(vis.keyVar);
+    console.log(vis.keyYear);
 
-    console.log(keyVar);
-    //Create objects that can map to the state Fips code
+    //Set up empty array and then push the relevent year objects into it
+    var countyDataYear = [];
+    for(var i = 0; i < vis.csvCA.length; i++ ) {
+        if (vis.csvCA[i].year === vis.keyYear) {
+            countyDataYear.push(vis.csvCA[i]);
+        }
+    }
+    console.log(countyDataYear);
+
+    //Create objects that can map to the county Fips code
     var keyById = {};
-    vis.countyData.forEach(function(d) { 
-        keyById[d.countyfip] = d[keyVar];
+    countyDataYear.forEach(function(d) { 
+        keyById[d.countyfip] = d[vis.keyVar];
     });
-
     console.log(keyById);
 
-    //Color scale domain with new keyVar
+    //Color scale domain
     vis.colorScale.domain(
-        d3.extent(d3.values(vis.countyData), function(d) { return d[keyVar]; })
+        d3.extent(d3.values(countyDataYear), function(d) { return d[vis.keyVar]; })
     );
 
     //Update choropleth colors

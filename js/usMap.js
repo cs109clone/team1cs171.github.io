@@ -64,7 +64,7 @@ USMap.prototype.initVis = function(){
 
     //Set colorscale range
     vis.colorScale = d3.scale.quantize()
-        .range(colorbrewer.Blues[6]);
+        .range(colorbrewer.Purples[6]);
 
     //Define map projection
     vis.projection = d3.geo.albersUsa()
@@ -85,11 +85,7 @@ USMap.prototype.initVis = function(){
 USMap.prototype.wrangleData = function(){
     var vis = this;
 
-    //Filter data  to 2014
-    vis.stateData = vis.csvUS.filter(function (value, index) {
-            return (value.year === 2014);
-    });
-    //console.log(vis.stateData);
+    //No data wrangling needed here for now
 
     // Update the visualization
     vis.updateVis();
@@ -105,25 +101,37 @@ USMap.prototype.wrangleData = function(){
     var vis = this;
 
     //get current keyVar value from dropdown
-    var keyVar = d3.select("#stat-type").property("value");
-    console.log(keyVar);
+    vis.keyVar = d3.select("#stat-type").property("value");
+
+    //get current year value from slider
+    vis.keyYear = parseInt(d3.select("#timeslide").property("value"));
+    console.log(vis.keyYear);
 
     // Convert TopoJSON to GeoJSON
     var usa = topojson.feature(vis.usMap, vis.usMap.objects.states).features;
 
-    console.log(usa);
-    console.log(vis.stateData);
+    //console.log(usa);
+    //console.log(vis.csvUS);
+
+    //Set up empty array and then push the relevent year objects into it
+    var stateDataYear = [];
+    for(var i = 0; i < vis.csvUS.length; i++ ) {
+        if (vis.csvUS[i].year === vis.keyYear) {
+            stateDataYear.push(vis.csvUS[i]);
+        }
+    }
+    console.log(stateDataYear);
 
     //Create objects that can map to the state Fips code
     var keyById = {};
-    vis.stateData.forEach(function(d) { 
-        keyById[d.statefip] = d[keyVar];
+    stateDataYear.forEach(function(d) { 
+        keyById[d.statefip] = d[vis.keyVar];
     });
     console.log(keyById);
 
     //Color scale domain
     vis.colorScale.domain(
-        d3.extent(d3.values(vis.stateData), function(d) { return d[keyVar]; })
+        d3.extent(d3.values(stateDataYear), function(d) { return d[vis.keyVar]; })
     );
 
     //Draw map
@@ -147,36 +155,49 @@ USMap.prototype.wrangleData = function(){
       .attr("class", "boundary")
       .attr("d", vis.path);
 
-    //JQuery to update Colors on dropdown change, pass in new value of dropdown selection
+    //JQuery to update Colors on dropdown change or timeslide change, pass in new value of dropdown selection and year
     $(document).ready(function() {
 
         $('#stat-type').on('change', function() {
-            var keyVar = this.value;
-            vis.updateColors (keyVar);
+            vis.keyVar = this.value;
+            vis.updateColors();
+        });
+
+        $('#timeslide').on('change', function() {
+            vis.keyYear = parseInt(this.value);
+            $('#range').text(vis.keyYear);
+            vis.updateColors();
         });
     });
-
-
 }
 
 /*=================================================================
-* Update Colors etc. with new keyVar 
+* Update Colors etc. with new keyVar/keyYear
 *=================================================================*/
-USMap.prototype.updateColors = function(keyVar){
+USMap.prototype.updateColors = function(){
     var vis = this;
+    console.log(vis.keyVar);
+    console.log(vis.keyYear);
 
-    console.log(keyVar);
+    //Set up empty array and then push the relevent year objects into it
+    var stateDataYear = [];
+    for(var i = 0; i < vis.csvUS.length; i++ ) {
+        if (vis.csvUS[i].year === vis.keyYear) {
+            stateDataYear.push(vis.csvUS[i]);
+        }
+    }
+    console.log(stateDataYear);
+
     //Create objects that can map to the state Fips code
     var keyById = {};
-    vis.stateData.forEach(function(d) { 
-        keyById[d.statefip] = d[keyVar];
+    stateDataYear.forEach(function(d) { 
+        keyById[d.statefip] = d[vis.keyVar];
     });
-
     console.log(keyById);
 
-    //Color scale domain with new keyVar
+    //Color scale domain
     vis.colorScale.domain(
-        d3.extent(d3.values(vis.stateData), function(d) { return d[keyVar]; })
+        d3.extent(d3.values(stateDataYear), function(d) { return d[vis.keyVar]; })
     );
 
     //Update choropleth colors
@@ -191,9 +212,6 @@ USMap.prototype.updateColors = function(keyVar){
                 return vis.colorScale(keyById[d.id]); 
             }
         });
-
-
-
 }
 
 
