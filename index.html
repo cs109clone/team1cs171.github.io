@@ -151,7 +151,7 @@
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="heading">
-						<h2>Tech Effect in Motion</h2>
+						<h2>in Motion: US by states</h2>
 					</div>
 				</div>
 			</div>
@@ -201,7 +201,6 @@
 			</div>
 		</div>
 	</section>
-
 
 	<!--CALI CASE-->
 	<section class="cali-case" id="cali-case">
@@ -351,6 +350,23 @@
 		</div>
 	</section>
 
+	<!--Motion Chart - California Counties-->
+	<section class="cali-tech-effect" id="cali-tech-effect">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="heading">
+						<h2>in Motion: California</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-centered text-center">
+					<div class="countyMotionChart"></div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<!--INSIGHT/CONCLUSION-->
 	<section class="conclusion" id="conclusion">
@@ -400,6 +416,7 @@
 
 <!-- Load data, create motion visualizations-->
 <script src="js/loadStateData.js"></script>
+<script src="js/loadCountyData.js"></script>
 <script src="js/main.js"></script>
 
 <script src="js/jquery-1.7.2.min.js"></script>
@@ -425,7 +442,30 @@
 		loop: true
 	});
 
-</script>
 
+
+	$('.countyMotionChart').motionchart({
+		title: "Case study in 4 California counties",
+		'data': CACountyData,
+		mappings: {key: 0, x: 4, y: 3, size: 2, color: 1, category:1},
+		colorPalette: {	"Blue-Red": {from: "rgb(0,0,255)", to: "rgb(255,0,0)"}},
+		color: "Red-Blue",
+		play: false,
+		loop: true
+	});
+
+</script>
+<!--
+<script>
+	$(document).ready(function(){
+		function fix_height(){
+			var h = $("#tray").height();
+			$("#preview").attr("height", (($(window).height()) - h) + "px");
+		}
+		$(window).resize(function(){ fix_height(); }).resize();
+		//$("#preview").contentWindow.focus();
+	});
+</script>
+-->
 </body>
 </html>
