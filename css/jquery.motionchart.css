@@ -128,8 +128,8 @@
 	float:left;
 	width:6px;
 	height: 45px;
-	border-right: 1px solid gray;
-	border-left: 1px solid gray;
+	border-right: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
 	padding: 2px 22px 2px 22px;
 }
 .mchart .speed-control-slider.ui-slider-vertical {
@@ -235,21 +235,21 @@ text {
 /* Bootstrap CSS Modifications*/
 .popover-inner {
   width: auto;
-  background-color: rgba(160, 160, 255, 0.50);
+  background-color: rgba(231, 231, 231, 0.5);
 }
 .popover-title{
   padding: 5px 5px;
-  background-color: #D7D7FF;
+  background-color: #000000;
   text-align: center;
 }
 .popover-content{
   padding: 5px 10px;
 }
 .popover.right .arrow{
-  border-right: 5px solid rgba(160, 160, 255, 0.50);
+  border-right: 5px solid rgba(115, 115, 115, 0.5);
 }
 .popover.left .arrow  {
-  border-left: 5px solid rgba(160, 160, 255, 0.50);
+  border-left: 5px solid rgba(115, 115, 115, 0.5);
 }
 .header .btn-group::after {
 	clear: none;
