@@ -250,7 +250,7 @@ header {
     background-color: gainsboro;
 }
 
-.us-choro,.cali-choro,.conclusion {
+.us-choro,.cali-choro,.cali-tech-effect {
     background-color: rgba(244, 244, 244, 0.43);
 }
 
@@ -287,6 +287,11 @@ header {
     font-color: gray;
     margin-bottom: 30px;
 
+}
+
+section {
+    padding-bottom: 30px;
+    padding-top: 15px;
 }
 
 
