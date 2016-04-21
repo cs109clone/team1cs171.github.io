@@ -67,7 +67,7 @@
 
 	<!--header-->
 	<header>
-		<div class="jumbotron jumbotron-fluid" id="banner">
+		<div class="banner" id="banner">
 			<div class="parallax" style="background-image: url(img/cover.png);">
 				<div class="parallax-pattern-overlay">
 					<div class="container" id="size-banner">
@@ -78,6 +78,7 @@
 				</div>
 			</div>
 		</div>
+		<div id="home-btn-right" class="nav-bt-right n-btn"><a class="page-scroll" href="#intro">Begin Story</a></div>
 	</header>
 
 	<!--INTRO-->
@@ -92,6 +93,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-lg-5">
 					<div class="heading">
@@ -102,6 +104,27 @@
 					<div class="heading">
 						<img id="i-dis-img" src="img/i-dist.png" style="max-width: 300px"alt="">
 					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="rp" class="rp">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="rp-chart">
+						<div id="ei-chart">XXXXXXXXXXXXXXXXX</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="rp-chart text-center">
+						<div id="tech-chart">YYYYYYYYYYYYYY</div>
+					</div>
+				</div>
+			</div>
+			<div class="row btm-rw">
+				<div class="col-lg-12 btm-rw-txt">
+					<!--text for section goes here-->
 				</div>
 			</div>
 		</div>
@@ -157,7 +180,8 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 col-centered text-center">
-					<div class="motionchart"></div>
+					<div id="econ-state-us">RECESSION</div>
+					<div class="motionchart" id="us-motion"></div>
 				</div>
 			</div>
 		</div>
@@ -190,8 +214,7 @@
 						</div>
 					</form><!---->
 					<!--<div id="calimap"><img src="img/cali-choro.png" alt=""></div>-->
-					<div class="col-md-4 col-centered text-center" id="ca-map">
-					</div>
+					<div class="col-md-4 col-centered text-center" id="ca-map"></div>
 					<!--Mike added slider-->
 					<div id="sliderContainer2">
 						<input id="timeslide2" type="range" min="1996" max="2014" value="1996" step="1"/><br>
@@ -362,7 +385,8 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 col-centered text-center">
-					<div class="countyMotionChart"></div>
+					<div id="econ-state-ca">RECESSION</div>
+					<div class="countyMotionChart" id="ca-motion"></div>
 				</div>
 			</div>
 		</div>
@@ -398,19 +422,19 @@
 </div><!--wrapper end-->
 
 
-<!-- JavaScripts -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+<script src="js/jquery-1.7.2.min.js"></script>
+<!--<script src="js/jquery-1.9.1.min.js"></script>-->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/queue.min.js"></script>
 <script src="js/colorbrewer.js"></script>
 <script src="js/topojson.js"></script>
 <script src="js/d3.min.js"></script>
-<script src="js/d3.tip.js"></script>
+
 
 
 <!-- Visualization objects -->
-<script src="js/usMap.js"></script>
+
 <script src="js/caMap.js"></script>
 
 
@@ -419,11 +443,20 @@
 <script src="js/loadCountyData.js"></script>
 <script src="js/main.js"></script>
 
-<script src="js/jquery-1.7.2.min.js"></script>
+<!--<script src="js/jquery-1.7.2.min.js"></script>-->
 <script src="js/dependencies.min.js"></script>
+<script src="js/usMap.js"></script>
+<script src="js/d3.tip.js"></script>
 <script src="js/custom-bootstrap.js"></script>
 <script src="js/jquery.handsontable.js"></script>
 <script src="js/jquery.motionchart.js"></script>
+
+
+
+
+
+
+
 <script src="js/jquery.easing.min.js"></script>
 
 <script type="text/javascript">
@@ -453,6 +486,11 @@
 		play: false,
 		loop: true
 	});
+
+
+	//By default the recession title doesn't show
+	document.getElementById("econ-state-us").style.display = "none";
+	document.getElementById("econ-state-ca").style.display = "none";
 
 </script>
 <!--

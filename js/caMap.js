@@ -1,6 +1,6 @@
 CAMap = function(_parentElement, _map, _data){
   this.parentElement = _parentElement;
-  this.usMap = _map;
+  this.caMap = _map;
   this.csvCA = _data;
   this.displayData = []; // unused right now could be useful for years though.
 
@@ -43,12 +43,19 @@ CAMap.prototype.initVis = function(){
     //Define map projection
     //EITHER FIND CA MAP OR FIX ZOOM OR FILTER JSON OR SOMETHING!
     vis.projection = d3.geo.albersUsa()
-        .translate([1100,350])
+        .translate([1100,375])
         .scale([3200]);
 
     //Define default path generator
     vis.path = d3.geo.path()
         .projection(vis.projection);
+
+    //Initialize tooltip 
+    vis.tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0]); 
+
+    vis.frame.call(vis.tip); 
 
     // TO-DO: (Filter, aggregate, modify data)
     vis.wrangleData();
@@ -86,9 +93,9 @@ CAMap.prototype.wrangleData = function(){
 
 
     // Convert TopoJSON to GeoJSON
-    var usa = topojson.feature(vis.usMap, vis.usMap.objects.counties).features;
+    var ca = topojson.feature(vis.caMap, vis.caMap.objects.subunits).features;
 
-    //console.log(usa);
+    //console.log(ca);
     //console.log(vis.csvCA);
 
     //Set up empty array and then push the relevent year objects into it
@@ -146,8 +153,10 @@ CAMap.prototype.wrangleData = function(){
 
     //Create objects that can map to the county Fips code
     var keyById = {};
+    var nameById = {};
     countyDataYear.forEach(function(d) { 
         keyById[d.countyfip] = d[vis.keyVar];
+        nameById[d.countyfip] = d.county;
     });
     console.log(keyById);
 
@@ -156,11 +165,24 @@ CAMap.prototype.wrangleData = function(){
         d3.extent(d3.values(countyDataYear), function(d) { return d[vis.keyVar]; })
     );
 
+    //add tip function
+    vis.tip.html(function(d) {
+        if (keyById[d.id] == undefined) {
+            return "<strong>County: No Data Available </strong> <span>"  + ///
+            "<br/> <strong>Value: No Data Available </strong> <span>"  + "</span>";
+        } else {
+
+            console.log(d);
+            return "<strong>County: </strong> <span>" + nameById[d.id]  + ///
+            "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
+        }
+    });
+
     //Draw map
     var map = vis.frame.append("g")
         .attr("class", "counties")
         .selectAll("vis.path")
-        .data(usa)
+        .data(ca)
         .enter().append("path")
         .attr("d", vis.path)
         .style("fill", function(d) {
@@ -170,11 +192,13 @@ CAMap.prototype.wrangleData = function(){
             } else {
                 return vis.colorScale(keyById[d.id]); 
             }
-        });
+        })
+        .on('mouseover', vis.tip.show)
+        .on('mouseout', vis.tip.hide);        
 
     //Draw boundries, for further use note that I have to set the .boundary class fill to none in css otherwise it messes up paths
     vis.frame.insert("path", ".graticule")
-      .datum(topojson.mesh(vis.usMap, vis.usMap.objects.counties, function(a, b) { return a !== b; }))
+      .datum(topojson.mesh(vis.caMap, vis.caMap.objects.subunits, function(a, b) { return a !== b; }))
       .attr("class", "boundary")
       .attr("d", vis.path);
 
@@ -292,8 +316,10 @@ CAMap.prototype.updateColors = function(){
 
     //Create objects that can map to the county Fips code
     var keyById = {};
+    var nameById = {};
     countyDataYear.forEach(function(d) { 
         keyById[d.countyfip] = d[vis.keyVar];
+        nameById[d.countyfip] = d.county;
     });
     console.log(keyById);
 
@@ -301,6 +327,17 @@ CAMap.prototype.updateColors = function(){
     vis.colorScale.domain(
         d3.extent(d3.values(countyDataYear), function(d) { return d[vis.keyVar]; })
     );
+
+    //Update tip function
+    vis.tip.html(function(d) {
+        if (keyById[d.id] == undefined) {
+            return "<strong>County: No Data Available </strong> <span>"  + ///
+            "<br/> <strong>Value: No Data Available </strong> <span>"  + "</span>";
+        } else {
+            return "<strong>County: </strong> <span>" + nameById[d.id]  + ///
+            "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
+        }
+    });
 
     //Update choropleth colors
     d3.select("g.counties")

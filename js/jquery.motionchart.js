@@ -21,6 +21,7 @@
 (function($) {
     "use strict";
 
+
     function MotionChart(container, options) {
 
         // Chart variables: Kept global to enhance performance.
@@ -116,6 +117,9 @@
                     step: 1,
                     animate: priv.settings.speed,
                     change: function(event, ui) {
+
+                        //alert(ui.value); //0 = 1998 ....
+
                         chart.update(ui.value);
                     }
                 });
@@ -166,6 +170,22 @@
             tooltips: function() {
 				priv.dom.$mainSlider.find('a.ui-slider-handle').tooltip({
                     title: function() {
+
+                        //display recession background & displays year on tooltip
+
+                        if(keyNames[priv.dom.$mainSlider.slider("value")] == "1998" | keyNames[priv.dom.$mainSlider.slider("value")] == "1999" | keyNames[priv.dom.$mainSlider.slider("value")] == "2000" | keyNames[priv.dom.$mainSlider.slider("value")] == "2008" | keyNames[priv.dom.$mainSlider.slider("value")] == "2009" | keyNames[priv.dom.$mainSlider.slider("value")] == "2010") {
+                            document.getElementById("econ-state-us").style.display = "block";
+                            document.getElementById("econ-state-ca").style.display = "block";
+                            //document.getElementById("ca-motion").style.backgroundColor = "#E6E6E6";
+                            //document.getElementById("us-motion").style.backgroundColor = "#E6E6E6";
+                        } else {
+                            document.getElementById("econ-state-us").style.display = "none";
+                            document.getElementById("econ-state-ca").style.display = "none";
+                            //document.getElementById("ca-motion").style.backgroundColor = "#F4F4F4";
+                            //document.getElementById("us-motion").style.backgroundColor = "white";
+                        }
+
+
                         return keyNames[priv.dom.$mainSlider.slider("value")];
                     }
                 });
@@ -1292,6 +1312,11 @@
 
                             for (i = 0; i < keys.length; i++)
 							{
+                                /*if (values[i] == "CT") {
+                                    values[i] = "Connecticut";
+                                    console.log(values[i]);
+                                }*/
+
 								output += keys[i] + " : " + values[i] + "<br>";
 							}
 

@@ -3,7 +3,7 @@
  */
 .dataTable {
   position: relative;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:'Lato', sans-serif;
   line-height: 1.3em;
   font-size: 13px;
 }
@@ -135,7 +135,7 @@ textarea.handsontableInput {
   outline-width: 0;
   margin: 0;
   padding: 1px 4px 0 2px;
-  font-family: Arial, Helvetica, sans-serif; /*repeat from .dataTable (inherit doesn't work with IE<8) */
+  font-family:'Lato', sans-serif; /*repeat from .dataTable (inherit doesn't work with IE<8) */
   line-height: 1.3em;
   font-size: 13px;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.4);

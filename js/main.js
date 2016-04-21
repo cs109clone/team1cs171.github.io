@@ -40,9 +40,10 @@ function loadData() {
     // Use the Queue.js library to read in three files
     queue()
         .defer(d3.json, "data/us.json")
+        .defer(d3.json, "data/caCountiesTopoSimple.json")
         .defer(d3.csv, "data/stateInequality.csv")
-        .defer(d3.csv, "data/caInequality.csv")
-        .await(function(error, usMap, csvUS, csvCA){
+        .defer(d3.csv, "data/caInequality.csv")        
+        .await(function(error, usMap, caMap, csvUS, csvCA){
 
             // Convert strings to numeric and create variables for US Data
             //console.log(csvUS);
@@ -73,12 +74,8 @@ function loadData() {
                 d.laborSupply_hl       = +d.laborSupply_hl;
                 d.realIncWageRat_cg_hs = +d.realIncWageRat_cg_hs;
                 d.year                 = +d.year;
-                d.countyfip            = +d.countyfip;
+                d.countyfip            = "0" + d.countyfip;
             });
-
-            //Create second json file for CA vis. I think there was an issue with both vis objects trying to hit the
-            //same json file, not sure though.
-            var caMap = usMap;
 
             //Pass in processed data here
             createVis(usMap, caMap, csvUS, csvCA);
@@ -90,9 +87,11 @@ function createVis(usMap, caMap, csvUS, csvCA) {
 
     // Create object instances
     //console.log(csvUS);
+    console.log(caMap);
     var usMap = new USMap("usa-map", usMap, csvUS);
 
     //console.log(csvCA);
+
     var caMap = new CAMap("ca-map", caMap, csvCA);
 }
 

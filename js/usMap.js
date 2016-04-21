@@ -75,6 +75,13 @@ USMap.prototype.initVis = function(){
     vis.path = d3.geo.path()
         .projection(vis.projection);
 
+    //Initialize tooltip 
+    vis.tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0]); 
+
+    vis.frame.call(vis.tip);  
+
     // TO-DO: (Filter, aggregate, modify data)
     vis.wrangleData();
 }
@@ -124,8 +131,10 @@ USMap.prototype.wrangleData = function(){
 
     //Create objects that can map to the state Fips code
     var keyById = {};
+    var nameById = {};
     stateDataYear.forEach(function(d) { 
         keyById[d.statefip] = d[vis.keyVar];
+        nameById[d.statefip] = d.state;
     });
     console.log(keyById);
 
@@ -133,6 +142,12 @@ USMap.prototype.wrangleData = function(){
     vis.colorScale.domain(
         d3.extent(d3.values(stateDataYear), function(d) { return d[vis.keyVar]; })
     );
+
+    //add tip function
+    vis.tip.html(function(d) {
+        return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
+        "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
+    });
 
     //Draw map
     var map = vis.frame.append("g")
@@ -147,7 +162,10 @@ USMap.prototype.wrangleData = function(){
             } else {
                 return vis.colorScale(keyById[d.id]); 
             }
-        });
+        })
+        .on('mouseover', vis.tip.show)
+        .on('mouseout', vis.tip.hide);
+
 
     //Draw boundries, for further use note that I have to set the .boundary class fill to none in css otherwise it messes up paths
     vis.frame.insert("path", ".graticule")
@@ -190,8 +208,10 @@ USMap.prototype.updateColors = function(){
 
     //Create objects that can map to the state Fips code
     var keyById = {};
+    var nameById = {};
     stateDataYear.forEach(function(d) { 
         keyById[d.statefip] = d[vis.keyVar];
+        nameById[d.statefip] = d.state;
     });
     console.log(keyById);
 
@@ -199,6 +219,12 @@ USMap.prototype.updateColors = function(){
     vis.colorScale.domain(
         d3.extent(d3.values(stateDataYear), function(d) { return d[vis.keyVar]; })
     );
+
+    //Update tip function
+    vis.tip.html(function(d) {
+        return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
+        "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
+    });
 
     //Update choropleth colors
     d3.select("g.states")
