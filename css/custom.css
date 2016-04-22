@@ -448,9 +448,12 @@ section, .parallax {
     padding: 5px;
     padding-right: 10px;
     padding-left: 10px;
-
+    opacity: .6;
     color: #ffffff;
     font-size: 24px;
+
+    background-color: black;
+
 }
 
 
@@ -463,16 +466,17 @@ section, .parallax {
 }
 
 .rp {
-    background:url('../img/bck.png') no-repeat center center;
+    background:url('../img/test.png') no-repeat center center;
+    background-size:cover;
 }
 
 .rp-chart {
     background-color: black;
     opacity: .7;
-    min-height: 150px;
-    max-width: 150px;
+    height: 350px;
+    width: 450px;
     margin: 0 auto;
-    margin-top: 75px;
+    margin-top: 40px;
 
 }
 
@@ -489,6 +493,8 @@ section, .parallax {
     position: absolute;
     bottom: 0;
 }
+
+
 
 .n-btn a:link, .n-btn a:visited, .n-btn a:hover, .n-btn a:active {
 
@@ -516,4 +522,33 @@ section, .parallax {
     font-size: 55px;
 }
 
+.btm-text {
+    font-size: 2.0rem;
+    color: white;
+    padding: 20px;
+}
+
+.rp h2, .rp h3, .rp h4 {
+    color: white;
+    opacity: 1;
+    font-weight: 300;
+}
+
+.rp h3 {
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.rp h4 {
+
+    font-size: 2.8rem;
+    font-weight: 700;
+
+}
+
+.rp h2 {
+    background-color: black;
+    opacity: .7;
+    max-width: 430px;
+}
 
