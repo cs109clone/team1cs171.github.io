@@ -470,9 +470,14 @@ section, .parallax {
     background-size:cover;
 }
 
+.question {
+    background:url('../img/test4.png') no-repeat center center;
+    background-size:cover;
+}
+
 .rp-chart {
     background-color: black;
-    opacity: .7;
+    opacity: .8;
     height: 350px;
     width: 450px;
     margin: 0 auto;
@@ -481,13 +486,13 @@ section, .parallax {
 }
 
 /* very important.. must first position the container as relative and then the child div can be positioned using absolute*/
-.rp .container, .cali-tech-effect .container {
+.rp .container, .cali-tech-effect .container, .question .container {
     position: relative;
 }
 
-.rp .container .btm-rw-txt {
+.rp .container .btm-rw-txt, .question .container .btm-rw-txt  {
     background-color: black;
-    opacity: .7;
+    opacity: .8;
     min-height: 150px;
     min-width: 100%;
     position: absolute;
@@ -528,27 +533,50 @@ section, .parallax {
     padding: 20px;
 }
 
-.rp h2, .rp h3, .rp h4 {
+.rp h2, .rp h3, .rp h4, .question h2, .question h3, .question h4 {
     color: white;
     opacity: 1;
     font-weight: 300;
 }
 
-.rp h3 {
+.rp h3, .question h3 {
     padding-top: 15px;
     padding-left: 15px;
 }
 
-.rp h4 {
+.rp h4, .question h4 {
 
     font-size: 2.8rem;
     font-weight: 700;
 
 }
 
-.rp h2 {
+.rp h2, .question h2 {
     background-color: black;
-    opacity: .7;
+    opacity: .8;
     max-width: 430px;
 }
 
+.question h2 {
+    max-width: 390px;
+    padding-left: 15px;
+}
+
+.question-area {
+    background-color: black;
+    opacity: .8;
+    max-width: 830px;
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.question .question-area p {
+    font-size: 50px;
+    font-weight: 400;
+    color: white;
+}
+
+.question .question-area .lbl {
+    font-weight: 700;
+}
