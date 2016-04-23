@@ -498,15 +498,21 @@ section, .parallax {
 /* very important.. must first position the container as relative and then the child div can be positioned using absolute*/
 .rp .container, .cali-tech-effect .container, .question .container, .case-study .container {
     position: relative;
+
 }
 
-.rp .container .btm-rw-txt, .question .container .btm-rw-txt, .case-study .container .btm-rw-txt   {
+.btm-rw {
     background-color: black;
     opacity: .8;
     min-height: 150px;
     min-width: 100%;
-    position: absolute;
+    position: absolute;/**/
     bottom: 0;
+
+}
+
+.rp .container, .question .container, .case-study .container {
+    min-height: 900px;
 }
 
 
