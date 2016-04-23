@@ -475,6 +475,16 @@ section, .parallax {
     background-size:cover;
 }
 
+.tech-effect, .cali-tech-effect {
+    background:url('../img/test6.jpg') no-repeat center center;
+    background-size:cover;
+}
+
+.case-study {
+    background:url('../img/test5.png') no-repeat center center;
+    background-size:cover;
+}
+
 .rp-chart {
     background-color: black;
     opacity: .8;
@@ -486,11 +496,11 @@ section, .parallax {
 }
 
 /* very important.. must first position the container as relative and then the child div can be positioned using absolute*/
-.rp .container, .cali-tech-effect .container, .question .container {
+.rp .container, .cali-tech-effect .container, .question .container, .case-study .container {
     position: relative;
 }
 
-.rp .container .btm-rw-txt, .question .container .btm-rw-txt  {
+.rp .container .btm-rw-txt, .question .container .btm-rw-txt, .case-study .container .btm-rw-txt   {
     background-color: black;
     opacity: .8;
     min-height: 150px;
@@ -533,31 +543,31 @@ section, .parallax {
     padding: 20px;
 }
 
-.rp h2, .rp h3, .rp h4, .question h2, .question h3, .question h4 {
+.rp h2, .rp h3, .rp h4, .question h2, .question h3, .question h4, .case-study h2, .case-study h3, .case-study h4 {
     color: white;
     opacity: 1;
     font-weight: 300;
 }
 
-.rp h3, .question h3 {
+.rp h3, .question h3, .case-study h3 {
     padding-top: 15px;
     padding-left: 15px;
 }
 
-.rp h4, .question h4 {
+.rp h4, .question h4, .case-study h4 {
 
     font-size: 2.8rem;
     font-weight: 700;
 
 }
 
-.rp h2, .question h2 {
+.rp h2, .question h2, .case-study h2 {
     background-color: black;
     opacity: .8;
     max-width: 430px;
 }
 
-.question h2 {
+.question h2, .casel-study h2 {
     max-width: 390px;
     padding-left: 15px;
 }
@@ -571,12 +581,12 @@ section, .parallax {
     margin-right: auto;
 }
 
-.question .question-area p {
+.question .question-area p, .case-study .question-area p{
     font-size: 50px;
-    font-weight: 400;
+    font-weight: 200;
     color: white;
 }
 
-.question .question-area .lbl {
+.question .question-area .lbl, .case-study .question-area .lbl {
     font-weight: 700;
 }
