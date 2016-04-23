@@ -55,16 +55,47 @@
 					<li class="hidden"><a href="#page-top"></a></li>
 					<li><a class="page-scroll menu-bck" href="#rp">The Story</a></li>
 					<li><a class="page-scroll menu-bck" href="#question">Question</a></li>
-					<li><a class="page-scroll menu-bck" href="#us-choro">US</a></li>
-					<li><a class="page-scroll menu-bck" href="#cali-case">Case Study</a></li>
-					<li><a class="page-scroll menu-bck" href="#cali-choro">California</a></li>
-					<li><a class="page-scroll menu-bck" href="#tech-effect">Tech Effect</a></li>
-					<li><a class="page-scroll menu-bck" href="#">Tutorial</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle menu-bck" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">US<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a class="page-scroll menu-bck" href="#us-choro">by States</a></li>
+							<li><a class="page-scroll menu-bck" href="#tech-effect">Through the Years</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle menu-bck" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Case Study<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a class="page-scroll menu-bck" href="#case-study">Case Study: California</a></li>
+							<li><a class="page-scroll menu-bck" href="#cali-choro">by Counties</a></li>
+							<li><a class="page-scroll menu-bck" href="#cali-case">County Comparison</a></li>
+							<li><a class="page-scroll menu-bck" href="#cali-tech-effect">Through the Years</a></li>
+						</ul>
+					</li>
+					<li><a class="page-scroll menu-bck" href="#conclusion">Insight</a></li>
+					<li><a class="page-scroll menu-bck" href="#" data-toggle="modal" data-target="#myModal3" title="Motion Chart Tutorial">Tutorial</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
+	<!-- Modal Chart Tutorial-->
+    <div id="myModal3" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h4 class="modal-title">Chart Tutorial</h4>
+				</div>
+				<div class="modal-body">
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/GetnEDxl3b8" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<div class="modal-footer">
+					<a href="#" type="button" class="btn btn-default" data-dismiss="modal">Close</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!--header-->
 	<header>
@@ -234,6 +265,27 @@
 		</div>
 	</section>
 
+	<!--CASE STUDY-->
+	<section id="case-study" class="case-study">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="question-area text-center">
+						<p><span class="lbl">Case Study:</span> Economic Inequality in California</p>
+					</div>
+				</div>
+			</div>
+			<div class="row btm-rw">
+				<div class="col-lg-12 btm-rw-txt">
+					<div class="btm-text">
+						<h4>The Impact of Technology (Skill-Bias) in California</h4>
+						<p>Lorem ipsum dolor sit amet, dicant equidem maluisset eum te, ullum scriptorem interpretaris eum te. Facete facilis ullamcorper vim an, te labore fierent mei, mucius possim dissentias est no. Sed wisi detracto an, scaevola legendos ad quo. At per aeque populo. In ignota laoreet forensibus qui.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<!--CALIFORNIA CHOROPLETH-->
 	<section class="cali-choro" id="cali-choro">
 		<div class="container">
@@ -278,9 +330,9 @@
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="heading">
-						<img class="dividerline" src="img/sep.png" alt="">
-						<h2>California Case Study</h2>
-						<img class="dividerline" src="img/sep.png" alt="">
+						<!--<img class="dividerline" src="img/sep.png" alt="">-->
+						<h2>California: County Camparison</h2>
+						<!--<img class="dividerline" src="img/sep.png" alt="">-->
 						<p>Mel clita inciderint at, no has nisl tollit conclusionemque. Mea in utamur epicuri, ea agam soluta dolores per, suscipit dissentiunt usu ad. Veri solum usu no, mea causae consulatu te. Debet hendrerit intellegebat has ne, affert ubique qualisque vel ne.</p>
 					</div>
 				</div>
