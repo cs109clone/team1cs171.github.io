@@ -495,14 +495,15 @@ section, .parallax {
 }
 
 .question {
-    background:url('../img/test4.png') no-repeat center center;
+    background:url('../img/sv.jpg') no-repeat center center;
     background-size:cover;
 }
 
+
+
 .tech-effect, .cali-tech-effect {
-    /*background:url('../img/test6.jpg') no-repeat center center;
-    background-size:cover; */
-    background-color: #00185a;
+    background:url('../img/motion.jpg') no-repeat center center;
+    background-size:cover;
 }
 
 .tech-effect .heading h2, .cali-tech-effect .heading h2 {
