@@ -492,7 +492,7 @@ section, .parallax {
 }
 
 .rp {
-    background:url('../img/test.png') no-repeat center center;
+    background:url('../img/rp.jpg') no-repeat center center;
     background-size:cover;
 }
 
@@ -532,7 +532,7 @@ section, .parallax {
 }
 
 .rp-chart {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     height: 450px;
     width: 800px;
     margin-top: 40px;
@@ -548,7 +548,7 @@ section, .parallax {
 
 .rp-chart2 {
 
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     height: 450px;
     width: 300px;
     margin: 0 auto;
