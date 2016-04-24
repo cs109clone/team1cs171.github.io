@@ -140,8 +140,9 @@ img{
 }
 
 .parallax-pattern-overlay {
-    background-image:url(../img/pattern.png);
-    background-repeat:repeat;
+    /*background-image:url(../img/pattern.png);
+    background-repeat:repeat;*/
+    background-color: rgba(0,0,0,0.7);
     width: 600px;
     padding-left: 30px;
 }
