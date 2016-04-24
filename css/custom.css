@@ -250,7 +250,7 @@ img{
     background-color: gainsboro;
 }
 
-.us-choro,.cali-choro,.cali-tech-effect {
+.us-choro,.cali-choro{
     background-color: rgba(244, 244, 244, 0.43);
 }
 
@@ -301,6 +301,31 @@ section {
     padding: 4px 6px;
     font-size: 16px;
     color: #fff;
+}
+
+/****************/
+/* Line Graph */
+/***************/
+.line-title {
+  font-size: 14px;
+  /*font-weight: bold;*/
+    fill: rgb(255, 255, 255);
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+.axis-text, .axis text {
+  font-size: 12px;
+    fill: rgb(255, 255, 255);
+}
+
+.line {
+  fill: none;
+  stroke-width: 2.5px;
 }
 
 
@@ -425,8 +450,7 @@ section, .parallax {
 }
 
 .intro {
-    background-color: darkblue;
-    opacity: .7;
+    background-color: rgba(0, 0, 139, 0.5);
 }
 
 .heading {
@@ -476,9 +500,28 @@ section, .parallax {
 }
 
 .tech-effect, .cali-tech-effect {
-    background:url('../img/test6.jpg') no-repeat center center;
-    background-size:cover;
+    /*background:url('../img/test6.jpg') no-repeat center center;
+    background-size:cover; */
+    background-color: #00185a;
 }
+
+.tech-effect .heading h2, .cali-tech-effect .heading h2 {
+
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 480px;
+    font-weight: 200;
+
+}
+
+.motion-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    width: 800px;
+}
+
 
 .case-study {
     background:url('../img/test5.png') no-repeat center center;
@@ -486,14 +529,74 @@ section, .parallax {
 }
 
 .rp-chart {
-    background-color: black;
-    opacity: .8;
-    height: 350px;
-    width: 450px;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 450px;
+    width: 800px;
     margin: 0 auto;
     margin-top: 40px;
+    padding-left: 20px;
+    padding-bottom: 20px;
 
 }
+
+.rp-chart2 {
+
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 450px;
+    width: 300px;
+    margin: 0 auto;
+    padding-left: 20px;
+
+}
+
+.rp-chart2 p {
+    font-size: 14px;
+    color: white;
+    padding-right: 10px;
+    margin-bottom: 0px;
+}
+
+.rp-chart2 h2 {
+    padding-top: 20px;
+    margin-top: 0px;
+    font-size: 35px;
+    font-weight: 200;
+    color: white;
+}
+
+.cali-tech-effect .rp-chart2 p, .tech-effect .rp-chart2 p {
+    font-size: 18px;
+    color: white;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.rp .rp-chart2 {
+    margin-top: 40px;
+}
+
+.gini-modal p {
+
+    font-size: 18px;
+    color: darkgray;
+}
+
+.gini-modal .modal-body {
+    background-color: black;
+}
+
+.rp-chart2 a:link, .rp-chart2 a:visited, .rp-chart2 a:hover, .rp-chart2 a:active {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.gini-dia {
+    max-width: 260px;
+}
+
 
 /* very important.. must first position the container as relative and then the child div can be positioned using absolute*/
 .rp .container, .cali-tech-effect .container, .question .container, .case-study .container {
@@ -502,8 +605,7 @@ section, .parallax {
 }
 
 .btm-rw {
-    background-color: black;
-    opacity: .8;
+    background-color: rgba(0, 0, 0, 0.7);
     min-height: 150px;
     min-width: 100%;
     position: absolute;/**/
@@ -530,8 +632,8 @@ section, .parallax {
     width: 110px;
     height: 30px;
     position: absolute;
-    top: 40px;
-    left: 400px;
+    top: 80px;
+    left: 300px;
     /*background-color: white;
     border: solid;
     border-radius: 5px;
@@ -539,8 +641,8 @@ section, .parallax {
     border-color: #9a8465;*/
     padding: 15px;
 
-    color: black;
-    font-size: 55px;
+    color: white;
+    font-size: 35px;
 }
 
 .btm-text {
@@ -568,8 +670,7 @@ section, .parallax {
 }
 
 .rp h2, .question h2, .case-study h2 {
-    background-color: black;
-    opacity: .8;
+    background-color: rgba(0, 0, 0, 0.7);
     max-width: 430px;
 }
 
@@ -579,8 +680,7 @@ section, .parallax {
 }
 
 .question-area {
-    background-color: black;
-    opacity: .8;
+    background-color: rgba(0, 0, 0, 0.7);
     max-width: 830px;
     margin-top: 200px;
     margin-left: auto;

@@ -28,6 +28,7 @@
 	font-size: 25px;
 	margin-top: -26px;
 	padding: 4px;
+	color: white;
 }
 .mchart .title:hover{
 	cursor: pointer;
@@ -40,9 +41,10 @@
 	position : relative;
 	height : 92%;
 	
-	border : gray solid 1px;	
+	border : #ffffff solid 1px;
 	text-align : center;
 	font-size: 18px;
+
 }
 
 .mchart .chart { /* color backround here */
@@ -101,7 +103,7 @@
 .mchart .timeline {
 	clear : both;
 	height : 49px;
-	border-top : 1px solid gray;
+	border-top : 1px solid #ffffff;
 }
 
 .mchart .control-button {
@@ -110,7 +112,7 @@
 	height: 30px;
 	background-position: center center;
 	background-repeat: no-repeat;
-	border: 2px solid #08C;
+	border: 1px solid #ededed;
 	border-radius: 4px;
 	cursor: pointer;
 }
@@ -156,10 +158,10 @@
 	margin: 8px 10px 8px 5px;
 }
 .mchart .control-button:hover {
-	background-color: rgba(180,180,240,0.5);
+	background-color: rgba(230, 230, 230, 0.5);
 }
 .mchart .control-button:active {
-	background-color: rgba(180,180,240,0.9);
+	background-color: rgba(115, 115, 115, 0.9);
 }
 .mchart .slider {
 	width: 70%;
@@ -203,12 +205,16 @@ text {
 
 .mchart .axis path, .mchart .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #ffffff;
   shape-rendering: crispEdges;
+
+}
+.mchart .axis text {
+	fill: rgb(255, 255, 255);
 }
 
 .mchart .label {
-  fill: #777;
+  fill: #ffffff;
 }
 
 .mchart .year.label {
@@ -264,13 +270,13 @@ text {
 }
 
 .motionchart {
-	width:900px;
-	height:700px;
+	width:600px;
+	height:500px;
 }
 
 .countyMotionChart {
-	width: 900px;
-	height: 700px;
+	width: 600px;
+	height: 500px;
 }
 
 @media screen and (max-width:768px) {

@@ -42,8 +42,9 @@ function loadData() {
         .defer(d3.json, "data/us.json")
         .defer(d3.json, "data/caCountiesTopoSimple.json")
         .defer(d3.csv, "data/stateInequality.csv")
-        .defer(d3.csv, "data/caInequality.csv")        
-        .await(function(error, usMap, caMap, csvUS, csvCA){
+        .defer(d3.csv, "data/caInequality.csv")      
+        .defer(d3.csv, "data/nationalInequality.csv")                 
+        .await(function(error, usMap, caMap, csvUS, csvCA, csvNational){
 
             // Convert strings to numeric and create variables for US Data
             //console.log(csvUS);
@@ -77,13 +78,28 @@ function loadData() {
                 d.countyfip            = "0" + d.countyfip;
             });
 
+            var formatDate = d3.time.format("%Y");
+
+            csvNational.forEach(function(d){
+
+                // Convert numeric values to 'numbers'
+                d.gini                 = +d.gini;
+                d.realIncWage_do       = +d.realIncWage_do 
+                d.realIncWage_hs       = +d.realIncWage_hs 
+                d.realIncWage_sc       = +d.realIncWage_sc 
+                d.realIncWage_cg       = +d.realIncWage_cg 
+                d.laborSupply_hl       = +d.laborSupply_hl;
+                d.realIncWageRat_cg_hs = +d.realIncWageRat_cg_hs;
+                d.year                 = formatDate.parse(d.year);
+            });            
+
             //Pass in processed data here
-            createVis(usMap, caMap, csvUS, csvCA);
+            createVis(usMap, caMap, csvUS, csvCA, csvNational);
         });
 };
 
 
-function createVis(usMap, caMap, csvUS, csvCA) {
+function createVis(usMap, caMap, csvUS, csvCA, csvNational) {
 
     // Create object instances
     //console.log(csvUS);
@@ -91,8 +107,10 @@ function createVis(usMap, caMap, csvUS, csvCA) {
     var usMap = new USMap("usa-map", usMap, csvUS);
 
     //console.log(csvCA);
-
     var caMap = new CAMap("ca-map", caMap, csvCA);
+
+    var wageLine = new WageLineGraph("wage-line", csvNational);
+
 }
 
 

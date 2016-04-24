@@ -97,6 +97,25 @@
 		</div>
 	</div>
 
+	<!-- Modal Gini Def.-->
+	<div id="myModal4" class="modal fade gini-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h4 class="modal-title">Gini Coefficient</h4>
+				</div>
+				<div class="modal-body">
+					<p>A Gini Coefficient of zero means incomes are the same across all households. A Gini Coefficient of 100 indicates that all income is concentrated in a single household. </p>
+				</div>
+				<div class="modal-footer">
+					<a href="#" type="button" class="btn btn-default" data-dismiss="modal">Close</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!--header-->
 	<header>
 		<div class="banner" id="banner">
@@ -127,16 +146,19 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-6">
-					<div class="rp-chart">
-						<h3>Tech Adoption & Inequality</h3>
-						<div id="ei-chart"></div>
+				<div class="col-lg-9">
+					<div class="rp-chart text-center">
+						<h3>Education and Earning Capcity</h3>
+						<div id="wage-line"></div>
 					</div>
 				</div>
-				<div class="col-lg-6">
-					<div class="rp-chart">
+			<!--</div>
+			<div class="row">-->
+				<div class="col-lg-3">
+					<div class="rp-chart2">
 						<h3>Gini Coefficient</h3>
-						<div id="tech-chart"></div>
+						<p>A common measure of inequality is the Gini Coefficient, which indicates how incomes are distributed throughout the population. Gini Coefficient is primarily used to measure inequality in this study.</p><a href="#" data-toggle="modal" data-target="#myModal4" title="Gini Coefficient Cont.">more...</a>
+						<div class="gini-dia"><img src="img/gini.png" /></div>
 					</div>
 				</div>
 			</div>
@@ -151,18 +173,9 @@
 		</div>
 	</section>
 
-	<!--INTRO-->
+	<!--QUESTION-->
 	<section id="question" class="question">
 		<div class="container">
-			<!--<div class="row">
-				<div class="col-lg-8">-->
-					<!--<div class="heading">-->
-						<!--<img class="dividerline" src="img/sep.png" alt="">-->
-						<!--<h2>The Skill Bias</h2>-->
-						<!--<img class="dividerline" src="img/sep.png" alt="">-->
-					<!--</div>-->
-				<!--</div>
-			</div>-->
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="question-area text-center">
@@ -230,9 +243,17 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 col-centered text-center">
+				<div class="col-lg-9">
 					<div id="econ-state-us">RECESSION</div>
-					<div class="motionchart" id="us-motion"></div>
+					<div class="motion-container"><div class="motionchart" id="us-motion"></div></div>
+				</div>
+				<div class="col-lg-3">
+					<div class="rp-chart2">
+						<h2>Fast Facts...</h2>
+						<p>Vel porro quaeque ne. Vim eu elitr vitae deserunt, at quod novum adipiscing has.</p>
+						<p>Per vero vidisse at, et cum graeco nostrum, id minim clita petentium sea. </p>
+						<p>Ex qui quando tritani singulis, stet prodesset ei eum. Eu doming fabulas vis. Ea ius dico saepe,</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -456,9 +477,17 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 col-centered text-center">
+				<div class="col-lg-9">
 					<div id="econ-state-ca">RECESSION</div>
-					<div class="countyMotionChart" id="ca-motion"></div>
+					<div class="motion-container"><div class="countyMotionChart" id="ca-motion"></div></div>
+				</div>
+				<div class="col-lg-3">
+					<div class="rp-chart2">
+						<h2>Fast Facts...</h2>
+						<p>Vel porro quaeque ne. Vim eu elitr vitae deserunt, at quod novum adipiscing has.</p>
+						<p>Per vero vidisse at, et cum graeco nostrum, id minim clita petentium sea. </p>
+						<p>Ex qui quando tritani singulis, stet prodesset ei eum. Eu doming fabulas vis. Ea ius dico saepe,</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -474,6 +503,7 @@
 						<h2>Conclusion</h2>
 						<img class="dividerline" src="img/sep.png" alt="">
 						<p><span class="three">Ex qui</span> quando tritani <span class="one">singulis</span>, stet prodesset ei <span class="tow">eum</span>. Eu doming fabulas vis. Ea ius <span class="one">dico saepe</span>, amet referrentur <span class="two">comprehensam</span> vel in, eum <span class="one">tale</span> vulputate et. Usu natum primis eu, discere <span class="three">cotidieque</span> mea ne, sed at case mundi graeci. Per <span class="one">vero vidisse</span> at, et cum graeco nostrum, id minim <span class="two">clita petentium</span> sea. Ne commodo alienum <span class="one">iudicabit</span> pri, ex sed vidit quando <span class="three">apeirian</span>. </p>
+
 					</div>
 				</div>
 			</div>
@@ -514,7 +544,7 @@
 <script src="js/loadStateData.js"></script>
 <script src="js/loadCountyData.js"></script>
 <script src="js/main.js"></script>
-
+<script src="js/lineGraph.js"></script>
 <!--<script src="js/jquery-1.7.2.min.js"></script>-->
 <script src="js/dependencies.min.js"></script>
 <script src="js/usMap.js"></script>
@@ -522,6 +552,7 @@
 <script src="js/custom-bootstrap.js"></script>
 <script src="js/jquery.handsontable.js"></script>
 <script src="js/jquery.motionchart.js"></script>
+
 
 
 
