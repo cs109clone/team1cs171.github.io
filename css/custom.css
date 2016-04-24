@@ -142,11 +142,13 @@ img{
 .parallax-pattern-overlay {
     background-image:url(../img/pattern.png);
     background-repeat:repeat;
+    width: 600px;
+    padding-left: 30px;
 }
 
 #size-banner{
-    height:300px;
-    padding-top:130px;
+    height:250px;
+    padding-top:70px;
 }
 
 
