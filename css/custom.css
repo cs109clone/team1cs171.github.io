@@ -532,11 +532,15 @@ section, .parallax {
     background-color: rgba(0, 0, 0, 0.7);
     height: 450px;
     width: 800px;
-    margin: 0 auto;
     margin-top: 40px;
     padding-left: 20px;
     padding-bottom: 20px;
 
+
+}
+
+.rp .rp-chart h3 {
+    padding-left: 195px; /*hack to center title*/
 }
 
 .rp-chart2 {
