@@ -49,11 +49,11 @@ USMap.prototype.initVis = function(){
         .projection(vis.projection);
 
     //Initialize tooltip
-    vis.tip = d3.tip()
+    vis.tipx = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-10, 0]);
 
-    vis.frame.call(vis.tip);
+    vis.frame.call(vis.tipx);
 
     // TO-DO: (Filter, aggregate, modify data)
     vis.wrangleData();
@@ -135,7 +135,7 @@ USMap.prototype.updateVis = function(){
     console.log(colorCutoffs);
 
     //add tip function
-    vis.tip.html(function(d) {
+    vis.tipx.html(function(d) {
         return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
             "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
     });
@@ -154,8 +154,8 @@ USMap.prototype.updateVis = function(){
                 return vis.colorScale(keyById[d.id]);
             }
         })
-        .on('mouseover', vis.tip.show)
-        .on('mouseout', vis.tip.hide);
+        .on('mouseover', vis.tipx.show)
+        .on('mouseout', vis.tipx.hide);
 
 
     //Draw boundries, for further use note that I have to set the .boundary class fill to none in css otherwise it messes up paths
@@ -251,7 +251,7 @@ USMap.prototype.updateColors = function(){
     console.log(colorCutoffs);
 
     //Update tip function
-    vis.tip.html(function(d) {
+    vis.tipx.html(function(d) {
         return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
             "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
     });
