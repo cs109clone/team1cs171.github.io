@@ -82,7 +82,7 @@
 						</ul>
 					</li>
 					<li><a class="page-scroll menu-bck" href="#conclusion">Insight</a></li>
-					<li><a class="page-scroll menu-bck" href="#" data-toggle="modal" data-target="#myModal3" title="Motion Chart Tutorial">Tutorial</a></li>
+					<!--<li><a class="page-scroll menu-bck" href="#" data-toggle="modal" data-target="#myModal3" title="Motion Chart Tutorial">Tutorial</a></li>-->
 				</ul>
 			</div>
 		</div>
@@ -284,10 +284,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 col-centered text-center">
-					<form class="form-inline">
+				<div class="col-sm-2 col-centered text-center">
+					<form class="form-horizontal">
 						<div class="form-group">
-							<label for="rankingType">Metric</label>
+							<label class="control-label" for="stat-type">Metric</label>
 							<select class="form-control" id="stat-type">
 								<option value="gini">Gini</option>
 								<option value="realIncWage">Average Income</option>
@@ -299,6 +299,11 @@
 							</select>
 						</div>
 					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-centered text-center">
+
 					<!--<div id="usmap"><img src="img/us-sample.png" /></div>-->
 					<div id="usa-map"> </div>
 					<!--Mike added slider-->
@@ -377,10 +382,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 col-centered text-center">
-					<form class="form-inline">
+				<div class="col-sm-2 col-centered text-center">
+					<form class="form-horizontal">
 						<div class="form-group">
-							<label for="rankingType">Metric</label>
+							<label class="control-label" for="stat-type2">Metric</label>
 							<select class="form-control" id="stat-type2">
 								<option value="gini">Gini</option>
 								<option value="realIncWage">Average Income</option>
@@ -391,9 +396,14 @@
 								<option value="realIncWageRat_cg_hs">College to High School Wage Ratio</option>
 							</select>
 						</div>
-					</form><!---->
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-centered text-center">
+
 					<!--<div id="calimap"><img src="img/cali-choro.png" alt=""></div>-->
-					<div class="col-md-4" id="ca-map"></div>
+					<div class="col-md-6 col-centered text-center" id="ca-map"></div>
 					<!--Mike added slider-->
 					<div id="sliderContainer2">
 						<input id="timeslide2" type="range" min="1996" max="2014" value="1996" step="1"/><br>
@@ -416,24 +426,26 @@
 						<p>Counties in California that are largely dominated by tech industries (Santa Clara & San Mateo) versus those that are not (LA & Sonoma).</p>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-lg-12 text-center">
-						<form class="form-inline text-center">
-							<div class="form-group">
-								<label for="rankingType">Select Year</label>
-								<select class="form-control" id="getgini">
-									<option value="1998">1998</option>
-									<option value="1999">1999</option>
-									<option value="2000">2000</option>
-									<option value="2001">2001</option>
-									<option value="2002">2002</option>
-									<option value="2003">2003</option>
-									<option value="2004">2004</option>
-									<option value="2005">2005</option>
-								</select>
-							</div>
-						</form>
-					</div>
+
+
+			</div>
+			<div class="row">
+				<div class="col-sm-2 col-centered text-center">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="control-label" for="getgini">Select Year</label>
+							<select class="form-control" id="getgini">
+								<option value="1998">1998</option>
+								<option value="1999">1999</option>
+								<option value="2000">2000</option>
+								<option value="2001">2001</option>
+								<option value="2002">2002</option>
+								<option value="2003">2003</option>
+								<option value="2004">2004</option>
+								<option value="2005">2005</option>
+							</select>
+						</div>
+					</form>
 				</div>
 			</div>
 			<div class="row">
@@ -616,36 +628,31 @@
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
 <script src="js/jquery-1.7.2.min.js"></script>
 <!--<script src="js/jquery-1.9.1.min.js"></script>-->
-<script src="js/bootstrap.min.js"></script>
 
 <script src="js/colorbrewer.js"></script>
 <script src="js/topojson.js"></script>
 <script src="js/d3.min.js"></script>
 <script src="js/queue.min.js"></script>
 
+<script src="js/jquery.easing.min.js"></script>
 
 <!-- Visualization objects -->
 <script src="js/usMap.js"></script>
 <script src="js/caMap.js"></script>
-
+<script src="js/lineGraph.js"></script>
 
 <!-- Load data, create motion visualizations-->
 <script src="js/loadStateData.js"></script>
 <script src="js/loadCountyData.js"></script>
 <script src="js/main.js"></script>
-<script src="js/lineGraph.js"></script>
-<!--<script src="js/jquery-1.7.2.min.js"></script>-->
-<script src="js/dependencies.min.js"></script>
-<script src="js/d3.tip.js"></script>
 
+
+<!--<script src="js/dependencies.min.js"></script>-->
+<script src="js/unmini.js"></script>
 <script src="js/custom-bootstrap.js"></script>
 <script src="js/jquery.handsontable.js"></script>
-
 <script src="js/jquery.motionchart.js"></script>
-
-
-<script src="js/jquery.easing.min.js"></script>
-
+<script src="js/d3.tip.js"></script>
 <script type="text/javascript">
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
@@ -665,7 +672,7 @@
 
 
 	$('.countyMotionChart').motionchart({
-		title: "Case study in 4 California counties",
+		title: "Case study on 4 California counties",
 		'data': CACountyData,
 		mappings: {key: 0, x: 4, y: 3, size: 2, color: 1, category:1},
 		colorPalette: {	"Blue-Red": {from: "rgb(0,0,255)", to: "rgb(255,0,0)"}},

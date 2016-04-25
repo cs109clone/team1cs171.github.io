@@ -196,9 +196,7 @@ img{
 
 
 .footer ul {
-    margin:0 auto;
-    margin-bottom:30px;
-    margin-top:10px;
+
     text-align:center;
     list-style-type:none;
     padding-left:0;
@@ -293,6 +291,37 @@ img{
 
 }
 
+.us-choro label, .cali-choro label, .cali-case label {
+    font-size: 20px;
+    padding-right: 5px;
+    height: 34px;
+    padding-top: 0px;
+    font-weight: 200;
+    color: #DADADA;
+}
+
+.us-choro .control-label {
+    padding-top: 0px;
+}
+
+
+.us-choro #range, .cali-choro #range2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #DADADA;
+}
+
+
+.us-choro, .cali-choro {
+    padding-bottom: 45px;
+}
+/*
+.us-choro .inline{
+    height: 74px;
+    padding-top: 0px;
+    padding-bottom: 50px;
+}*/
+
 /* NAVBAR
 -------------------------------------------------*/
 .navbar-brand a, .menu-bck {
@@ -339,6 +368,8 @@ img{
 
 .legend-text {
     font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    fill: rgba(218, 218, 218, 0.62);
 }
 
 /*********************/
@@ -519,13 +550,23 @@ section, .parallax {
 }
 
 .cali-case {
-    background:url('../img/compare.jpg') no-repeat center center;
+    background:url('../img/choro-back.jpg') no-repeat center center;
     background-size:cover;
 }
 
 .conclusion {
     background:url('../img/conclude.jpg') no-repeat center center;
     background-size:cover;
+}
+
+.us-choro, .cali-choro {
+    background:url('../img/compare.jpg') no-repeat center center;
+    background-size:cover;
+}
+
+.cali-choro .heading h2, .us-choro .heading h2 {
+    font-weight: 200;
+    color: #DADADA;
 }
 
 .theories, .poor {
@@ -851,6 +892,24 @@ section, .parallax {
 
 .question .question-area .lbl, .case-study .question-area .lbl {
     font-weight: 700;
+}
+
+.cali-case {
+    color: white;
+}
+
+.cali-case h4, .cali-case h2 {
+    color: white;
+}
+
+.cali-case h2 {
+    font-weight: 300;
+}
+
+.cali-case #viewcloud a:link, .cali-case #viewcloud a:visited, .cali-case #viewcloud a:hover, .cali-case #viewcloud a:active {
+
+    color: #ffffff;
+
 }
 
 /*footer override */
