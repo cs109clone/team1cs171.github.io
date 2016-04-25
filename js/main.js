@@ -103,11 +103,16 @@ function createVis(usMap, caMap, csvUS, csvCA, csvNational) {
 
     // Create object instances
     //console.log(csvUS);
+
     console.log(caMap);
+    var caMap = new CAMap("ca-map", caMap, csvCA);
+
+    console.log(usMap);
     var usMap = new USMap("usa-map", usMap, csvUS);
 
-    //console.log(csvCA);
-    var caMap = new CAMap("ca-map", caMap, csvCA);
+
+
+
 
     var wageLine = new WageLineGraph("wage-line", csvNational);
 

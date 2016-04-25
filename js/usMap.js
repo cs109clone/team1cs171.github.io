@@ -24,36 +24,6 @@ USMap.prototype.initVis = function(){
 
     vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
-    //Allows map to resize////////////////////////////////////////
-    //converted scale into variable called theScale & the vis.height variable is overridden
-    var theScale;
-
-    if (parseInt(getWidth()) <= 768) {
-
-        theScale = 500;
-        vis.height = 250;
-
-    } else {
-        theScale = 1200;
-    }
-
-    function getWidth() {
-        if (self.innerWidth) {
-            return self.innerWidth;
-        }
-        else if (document.documentElement && document.documentElement.clientHeight){
-            return document.documentElement.clientWidth;
-        }
-        else if (document.body) {
-            return document.body.clientWidth;
-        }
-        return 0;
-    }
-
-    //replaced width of 1000px with the width of the div (detected on page load) Note: the primary purpose is to resize for mobile
-    //otherwise site look awkward and out of wack on mobile
-    /////////////////////////////////////////////////////////////////////
-
 
     vis.svg = d3.select("#usa-map").append("svg")
         .attr("width", vis.width + vis.margin.left + vis.margin.right)
@@ -72,7 +42,7 @@ USMap.prototype.initVis = function(){
     //Define map projection
     vis.projection = d3.geo.albersUsa()
         .translate([vis.width/2, vis.height/2])
-        .scale([theScale]);
+        .scale([1200]);
 
     //Define default path generator
     vis.path = d3.geo.path()
