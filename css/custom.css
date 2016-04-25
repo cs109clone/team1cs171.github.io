@@ -854,6 +854,10 @@ section, .parallax {
 }
 
 /*footer override */
-section .footer .container {
+#footer {
     max-height: 40px;
+}
+
+#footer .footer-info {
+    padding-top: 25px;
 }
