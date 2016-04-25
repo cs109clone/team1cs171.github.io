@@ -21,12 +21,14 @@ CAMap.prototype.initVis = function(){
     $("#group-one").show();
     $("#group-two").hide();
     $("#viewTwo").css("color", "gray");
+    $("#viewTwo").css("font-size", "20px");
     $("#viewOne").css("color", "crimson");
+    $("#viewOne").css("font-size", "28px");
     document.getElementById("viewcloud").innerHTML= '<a href="#" data-toggle="modal" data-target="#myModal1" title="Santa Clara County Companies">View WordCloud</a>';
 
     vis.margin = {top: 30, right: 10, bottom: 10, left: 10};
 
-    vis.width = 400 - vis.margin.left - vis.margin.right,
+    vis.width = 700 - vis.margin.left - vis.margin.right,
     vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
     vis.svg = d3.select("#ca-map").append("svg")
@@ -36,9 +38,12 @@ CAMap.prototype.initVis = function(){
     vis.frame = vis.svg.append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
+    //Set colorscale # of buckets
+    vis.colorBuckets = 6;
+
     //Set colorscale range
     vis.colorScale = d3.scale.quantize()
-        .range(colorbrewer.Purples[6]);
+        .range(colorbrewer.Purples[vis.colorBuckets]);
 
     //Define map projection
     //EITHER FIND CA MAP OR FIX ZOOM OR FILTER JSON OR SOMETHING!
@@ -161,9 +166,21 @@ CAMap.prototype.wrangleData = function(){
     console.log(keyById);
 
     //Color scale domain
-    vis.colorScale.domain(
-        d3.extent(d3.values(countyDataYear), function(d) { return d[vis.keyVar]; })
-    );
+    var domainExtent = d3.extent(d3.values(countyDataYear), function(d) { return d[vis.keyVar]; });
+    vis.colorScale.domain(domainExtent);
+    console.log(domainExtent); 
+
+    //Find range and create array of color cutoff points for legend
+    var colorBlocksize = (domainExtent[1]-domainExtent[0])/vis.colorBuckets;
+    var colorCutoffs = [];
+    for (i=0; i<vis.colorBuckets; i++) {
+        if (vis.keyVar != "realIncWage") {
+          colorCutoffs.push(Math.round(1000*(domainExtent[0] + i*colorBlocksize))/1000)
+        } else {
+            colorCutoffs.push(Math.round(domainExtent[0] + i*colorBlocksize))
+        }   
+    };
+    console.log(colorCutoffs);
 
     //add tip function
     vis.tip.html(function(d) {
@@ -202,6 +219,35 @@ CAMap.prototype.wrangleData = function(){
       .attr("class", "boundary")
       .attr("d", vis.path);
 
+    //legend                            
+    var legend = vis.frame.selectAll('rect')
+        .data(colorbrewer.Purples[vis.colorBuckets])
+        .enter()
+        .append('rect')
+        .attr("x", 0)
+        .attr("y", function(d, i) {
+           return (vis.height-30) - (i * 30);
+        })
+       .attr("width", 15)
+       .attr("height", 30)
+       .style("fill", function(d) {
+           return d;
+       });
+
+
+    //legend text
+    var text = vis.frame.selectAll("text")
+        .data(colorCutoffs)
+        .enter()
+        .append('text')
+        .attr("class", "legend-text")
+        .attr("transform", function(d, i) {
+            return "translate(" + (18) + "," + ((vis.height-15) - i*30) + ")"
+        })
+        .text(function(d) {
+            return "> " + d;
+        });
+
     //JQuery to update Colors on dropdown change or timeslide change, pass in new value of dropdown selection and year
     $(document).ready(function() {
 
@@ -209,7 +255,9 @@ CAMap.prototype.wrangleData = function(){
             $("#group-one").show();
             $("#group-two").hide();
             $("#viewTwo").css("color", "gray");
+            $("#viewTwo").css("font-size", "20px");
             $("#viewOne").css("color", "crimson");
+            $("#viewOne").css("font-size", "28px");
             document.getElementById("viewcloud").innerHTML= '<a href="#" data-toggle="modal" data-target="#myModal1" title="Santa Clara County Companies">View WordCloud</a>';
 
             return false;
@@ -219,7 +267,9 @@ CAMap.prototype.wrangleData = function(){
             $("#group-one").hide();
             $("#group-two").show();
             $("#viewOne").css("color", "gray");
+            $("#viewOne").css("font-size", "20px");
             $("#viewTwo").css("color", "crimson");
+            $("#viewTwo").css("font-size", "28px");
             document.getElementById("viewcloud").innerHTML= '<a href="#" data-toggle="modal" data-target="#myModal2" title="San Mateo County Companies">View WordCloud</a>';
 
             return false;
@@ -312,7 +362,6 @@ CAMap.prototype.updateColors = function(){
             countyDataYear.push(vis.csvCA[i]);
         }
     }
-    console.log(countyDataYear);
 
     //Create objects that can map to the county Fips code
     var keyById = {};
@@ -324,9 +373,21 @@ CAMap.prototype.updateColors = function(){
     console.log(keyById);
 
     //Color scale domain
-    vis.colorScale.domain(
-        d3.extent(d3.values(countyDataYear), function(d) { return d[vis.keyVar]; })
-    );
+    var domainExtent = d3.extent(d3.values(countyDataYear), function(d) { return d[vis.keyVar]; });
+    vis.colorScale.domain(domainExtent);
+    console.log(domainExtent);
+
+    //Find range and create array of color cutoff points for legend
+    var colorBlocksize = (domainExtent[1]-domainExtent[0])/vis.colorBuckets;
+    var colorCutoffs = [];
+    for (i=0; i<vis.colorBuckets; i++) {
+        if (vis.keyVar != "realIncWage") {
+          colorCutoffs.push(Math.round(1000*(domainExtent[0] + i*colorBlocksize))/1000)
+        } else {
+            colorCutoffs.push(Math.round(domainExtent[0] + i*colorBlocksize))
+        }
+    };
+    console.log(colorCutoffs);
 
     //Update tip function
     vis.tip.html(function(d) {
@@ -351,4 +412,23 @@ CAMap.prototype.updateColors = function(){
                 return vis.colorScale(keyById[d.id]); 
             }
         });
+
+    //Data join for new legend text
+    var text = vis.frame.selectAll("text")
+        .data(colorCutoffs);
+
+    //Update
+    text.attr("class", "legend-text");
+
+    //Enter
+    text.enter().append("text")
+        .attr("class", "enter");
+
+    //Enter + Update
+    text.text(function(d) {
+            return "> " + d;
+    });
+
+    //Exit
+    text.exit().remove();
 }

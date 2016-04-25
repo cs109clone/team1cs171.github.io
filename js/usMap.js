@@ -1,19 +1,19 @@
 USMap = function(_parentElement, _map, _data){
-  this.parentElement = _parentElement;
-  this.usMap = _map;
-  this.csvUS = _data;
-  this.displayData = []; // unused right now could be useful for years though.
+    this.parentElement = _parentElement;
+    this.usMap = _map;
+    this.csvUS = _data;
+    this.displayData = []; // unused right now could be useful for years though.
 
-  // DEBUG RAW DATA
-  //console.log(this.csvUS);
-  //console.log(this.usMap);
+    // DEBUG RAW DATA
+    //console.log(this.csvUS);
+    //console.log(this.usMap);
 
-  this.initVis();
+    this.initVis();
 }
 
 /*=================================================================
-* Initialize visualization (static content, e.g. SVG area or axes)
-*=================================================================*/
+ * Initialize visualization (static content, e.g. SVG area or axes)
+ *=================================================================*/
 
 USMap.prototype.initVis = function(){
     var vis = this;
@@ -62,9 +62,12 @@ USMap.prototype.initVis = function(){
     vis.frame = vis.svg.append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
+    //Set colorscale # of buckets
+    vis.colorBuckets = 6;
+
     //Set colorscale range
     vis.colorScale = d3.scale.quantize()
-        .range(colorbrewer.Purples[6]);
+        .range(colorbrewer.Purples[vis.colorBuckets]);
 
     //Define map projection
     vis.projection = d3.geo.albersUsa()
@@ -75,20 +78,20 @@ USMap.prototype.initVis = function(){
     vis.path = d3.geo.path()
         .projection(vis.projection);
 
-    //Initialize tooltip 
+    //Initialize tooltip
     vis.tip = d3.tip()
         .attr('class', 'd3-tip')
-        .offset([-10, 0]); 
+        .offset([-10, 0]);
 
-    vis.frame.call(vis.tip);  
+    vis.frame.call(vis.tip);
 
     // TO-DO: (Filter, aggregate, modify data)
     vis.wrangleData();
 }
 
 /*=================================================================
-* Data Wrangling
-*=================================================================*/
+ * Data Wrangling
+ *=================================================================*/
 USMap.prototype.wrangleData = function(){
     var vis = this;
 
@@ -100,11 +103,11 @@ USMap.prototype.wrangleData = function(){
 
 
 /*=================================================================
- * The drawing function - should use the D3 update sequence 
+ * The drawing function - should use the D3 update sequence
  * Function parameters only needed if different kinds of updates are needed
-*=================================================================*/
+ *=================================================================*/
 
- USMap.prototype.updateVis = function(){
+USMap.prototype.updateVis = function(){
     var vis = this;
 
     //get current keyVar value from dropdown
@@ -132,21 +135,39 @@ USMap.prototype.wrangleData = function(){
     //Create objects that can map to the state Fips code
     var keyById = {};
     var nameById = {};
-    stateDataYear.forEach(function(d) { 
+    stateDataYear.forEach(function(d) {
         keyById[d.statefip] = d[vis.keyVar];
         nameById[d.statefip] = d.state;
     });
     console.log(keyById);
 
     //Color scale domain
-    vis.colorScale.domain(
-        d3.extent(d3.values(stateDataYear), function(d) { return d[vis.keyVar]; })
-    );
+    var domainExtent = d3.extent(d3.values(stateDataYear), function(d) { return d[vis.keyVar]; });
+    vis.colorScale.domain(domainExtent);
+    console.log(domainExtent);
+
+    /*/Alternate color scale domain - constant scale
+     var domainExtent = d3.extent(d3.values(vis.csvUS), function(d) { return d[vis.keyVar]; });
+     vis.colorScale.domain(domainExtent);
+     console.log(domainExtent);
+     );*/
+
+    //Find range and create array of color cutoff points for legend
+    var colorBlocksize = (domainExtent[1]-domainExtent[0])/vis.colorBuckets;
+    var colorCutoffs = [];
+    for (i=0; i<vis.colorBuckets; i++) {
+        if (vis.keyVar != "realIncWage") {
+            colorCutoffs.push(Math.round(1000*(domainExtent[0] + i*colorBlocksize))/1000)
+        } else {
+            colorCutoffs.push(Math.round(domainExtent[0] + i*colorBlocksize))
+        }
+    };
+    console.log(colorCutoffs);
 
     //add tip function
     vis.tip.html(function(d) {
         return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
-        "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
+            "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
     });
 
     //Draw map
@@ -160,7 +181,7 @@ USMap.prototype.wrangleData = function(){
             if ( isNaN(keyById[d.id]) === true  ) {
                 return "#ccc";
             } else {
-                return vis.colorScale(keyById[d.id]); 
+                return vis.colorScale(keyById[d.id]);
             }
         })
         .on('mouseover', vis.tip.show)
@@ -169,9 +190,37 @@ USMap.prototype.wrangleData = function(){
 
     //Draw boundries, for further use note that I have to set the .boundary class fill to none in css otherwise it messes up paths
     vis.frame.insert("path", ".graticule")
-      .datum(topojson.mesh(vis.usMap, vis.usMap.objects.states, function(a, b) { return a !== b; }))
-      .attr("class", "boundary")
-      .attr("d", vis.path);
+        .datum(topojson.mesh(vis.usMap, vis.usMap.objects.states, function(a, b) { return a !== b; }))
+        .attr("class", "boundary")
+        .attr("d", vis.path);
+
+    //legend
+    var legend = vis.frame.selectAll('rect')
+        .data(colorbrewer.Purples[vis.colorBuckets])
+        .enter()
+        .append('rect')
+        .attr("x", 0)
+        .attr("y", function(d, i) {
+            return (vis.height/3) - (i * 30);
+        })
+        .attr("width", 15)
+        .attr("height", 30)
+        .style("fill", function(d) {
+            return d;
+        });
+
+    //legend text
+    var text = vis.frame.selectAll("text")
+        .data(colorCutoffs)
+        .enter()
+        .append('text')
+        .attr("class", "legend-text")
+        .attr("transform", function(d, i) {
+            return "translate(" + (18) + "," + ((vis.height/3+15) - i*30) + ")"
+        })
+        .text(function(d) {
+            return "> " + d;
+        });
 
     //JQuery to update Colors on dropdown change or timeslide change, pass in new value of dropdown selection and year
     $(document).ready(function() {
@@ -190,8 +239,8 @@ USMap.prototype.wrangleData = function(){
 }
 
 /*=================================================================
-* Update Colors etc. with new keyVar/keyYear
-*=================================================================*/
+ * Update Colors etc. with new keyVar/keyYear
+ *=================================================================*/
 USMap.prototype.updateColors = function(){
     var vis = this;
     console.log(vis.keyVar);
@@ -204,26 +253,37 @@ USMap.prototype.updateColors = function(){
             stateDataYear.push(vis.csvUS[i]);
         }
     }
-    console.log(stateDataYear);
 
     //Create objects that can map to the state Fips code
     var keyById = {};
     var nameById = {};
-    stateDataYear.forEach(function(d) { 
+    stateDataYear.forEach(function(d) {
         keyById[d.statefip] = d[vis.keyVar];
         nameById[d.statefip] = d.state;
     });
     console.log(keyById);
 
     //Color scale domain
-    vis.colorScale.domain(
-        d3.extent(d3.values(stateDataYear), function(d) { return d[vis.keyVar]; })
-    );
+    var domainExtent = d3.extent(d3.values(stateDataYear), function(d) { return d[vis.keyVar]; });
+    vis.colorScale.domain(domainExtent);
+    console.log(domainExtent);
+
+    //Find range and create array of color cutoff points for legend
+    var colorBlocksize = (domainExtent[1]-domainExtent[0])/vis.colorBuckets;
+    var colorCutoffs = [];
+    for (i=0; i<vis.colorBuckets; i++) {
+        if (vis.keyVar != "realIncWage") {
+            colorCutoffs.push(Math.round(1000*(domainExtent[0] + i*colorBlocksize))/1000)
+        } else {
+            colorCutoffs.push(Math.round(domainExtent[0] + i*colorBlocksize))
+        }
+    };
+    console.log(colorCutoffs);
 
     //Update tip function
     vis.tip.html(function(d) {
         return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
-        "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
+            "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
     });
 
     //Update choropleth colors
@@ -231,13 +291,30 @@ USMap.prototype.updateColors = function(){
         .selectAll("path")
         .transition()
         .duration(1000)
-        .style("fill", function(d) { 
+        .style("fill", function(d) {
             if ( isNaN(keyById[d.id]) === true  ) {
                 return "#ccc";
             } else {
-                return vis.colorScale(keyById[d.id]); 
+                return vis.colorScale(keyById[d.id]);
             }
         });
+
+    //Data join for new legend text
+    var text = vis.frame.selectAll("text")
+        .data(colorCutoffs);
+
+    //Update
+    text.attr("class", "legend-text");
+
+    //Enter
+    text.enter().append("text")
+        .attr("class", "enter");
+
+    //Enter + Update
+    text.text(function(d) {
+        return "> " + d;
+    });
+
+    //Exit
+    text.exit().remove();
 }
-
-
