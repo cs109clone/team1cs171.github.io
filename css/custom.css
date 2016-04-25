@@ -729,6 +729,13 @@ section, .parallax {
     min-height: 900px;
 }
 
+.question .btm-text a:link, .question .btm-text a:visited, .question .btm-text a:hover, .question .btm-text a:active {
+
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+
+}
 
 
 .n-btn a:link, .n-btn a:visited, .n-btn a:hover, .n-btn a:active {
