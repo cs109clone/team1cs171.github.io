@@ -913,6 +913,11 @@ section, .parallax {
 
 }
 
+.cali-case .modal-header h4 {
+    color: #000000;
+    font-weight: 400;
+}
+
 #ca-map {
     margin-top: 80px;
 }
