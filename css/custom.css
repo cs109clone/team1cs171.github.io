@@ -14,6 +14,7 @@ body {
     line-height:1.7;
     overflow-x:hidden;
     height: 100%;
+    background-color: black;
 }
 
 h1,h2,h4,h5,h6 {
@@ -207,10 +208,10 @@ img{
     display:inline-block;
     background:rgba(0,0,0,0.2);
     color:#fff;
-    line-height:45px;
+    line-height:35px;
     margin:0 4px;
-    width:45px!important;
-    height:45px!important;
+    width:35px!important;
+    height:35px!important;
     -webkit-border-radius:3px;
     border-radius:3px;
 }
@@ -225,12 +226,12 @@ img{
 
 .footer ul li a {
     color:#fff;
-    width:42px!important;
-    height:42px!important;
+    width:35px!important;
+    height:35px!important;
 }
 
 .footer ul li a i {
-    line-height:45px;
+    line-height:35px;
     color:#fff;
 }
 
@@ -914,7 +915,7 @@ section, .parallax {
 
 /*footer override */
 #footer {
-    max-height: 40px;
+    max-height: 20px;
 }
 
 #footer .footer-info {
