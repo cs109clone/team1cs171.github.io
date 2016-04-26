@@ -913,6 +913,10 @@ section, .parallax {
 
 }
 
+#ca-map {
+    margin-top: 80px;
+}
+
 /*footer override */
 #footer {
     max-height: 20px;
