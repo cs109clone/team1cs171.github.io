@@ -331,6 +331,8 @@ img{
     color: #fff;
 }
 
+
+
 /****************/
 /* Line Graph */
 /***************/
@@ -411,8 +413,10 @@ img{
     left: 0;
 }
 
-
-
+.navbar-custom .navbar-nav .open .dropdown-menu>li>a,.navbar-custom .navbar-nav .open .dropdown-menu {
+    background-color: black;
+    color:white;
+}
 
 
 /* MEDIA QUERIES
