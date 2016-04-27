@@ -416,6 +416,7 @@ img{
 .navbar-custom .navbar-nav .open .dropdown-menu>li>a,.navbar-custom .navbar-nav .open .dropdown-menu {
     background-color: black;
     color:white;
+    font-weight: 200;
 }
 
 
