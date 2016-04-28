@@ -935,3 +935,13 @@ section, .parallax {
 #footer .footer-info {
     padding-top: 25px;
 }
+
+#sliderContainer2 {
+    width: 400px;
+    /*margin-left: auto;
+    margin-right: auto;*/
+}
+
+#outside-contain {
+    margin-left: 190px;
+}

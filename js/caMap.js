@@ -1,19 +1,19 @@
 CAMap = function(_parentElement, _map, _data){
-  this.parentElement = _parentElement;
-  this.caMap = _map;
-  this.csvCA = _data;
-  this.displayData = []; // unused right now could be useful for years though.
+    this.parentElement = _parentElement;
+    this.caMap = _map;
+    this.csvCA = _data;
+    this.displayData = []; // unused right now could be useful for years though.
 
-  // DEBUG RAW DATA
-  //console.log(this.csvCA);
-  //console.log(this.usMap);
+    // DEBUG RAW DATA
+    //console.log(this.csvCA);
+    //console.log(this.usMap);
 
-  this.initVis();
+    this.initVis();
 }
 
 /*=================================================================
-* Initialize visualization (static content, e.g. SVG area or axes)
-*=================================================================*/
+ * Initialize visualization (static content, e.g. SVG area or axes)
+ *=================================================================*/
 
 CAMap.prototype.initVis = function(){
     var vis = this;
@@ -28,8 +28,8 @@ CAMap.prototype.initVis = function(){
 
     vis.margin = {top: 30, right: 10, bottom: 10, left: 10};
 
-    vis.width = 700 - vis.margin.left - vis.margin.right,
-    vis.height = 700 - vis.margin.top - vis.margin.bottom;
+    vis.width = 600 - vis.margin.left - vis.margin.right,
+        vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
     vis.svg = d3.select("#ca-map").append("svg")
         .attr("width", vis.width + vis.margin.left + vis.margin.right)
@@ -55,20 +55,20 @@ CAMap.prototype.initVis = function(){
     vis.path = d3.geo.path()
         .projection(vis.projection);
 
-    //Initialize tooltip 
+    //Initialize tooltip
     vis.tip = d3.tip()
         .attr('class', 'd3-tip')
-        .offset([-10, 0]); 
+        .offset([-10, 0]);
 
-    vis.frame.call(vis.tip); 
+    vis.frame.call(vis.tip);
 
     // TO-DO: (Filter, aggregate, modify data)
     vis.wrangleData();
 }
 
 /*=================================================================
-* Data Wrangling
-*=================================================================*/
+ * Data Wrangling
+ *=================================================================*/
 CAMap.prototype.wrangleData = function(){
     var vis = this;
 
@@ -80,11 +80,11 @@ CAMap.prototype.wrangleData = function(){
 
 
 /*=================================================================
- * The drawing function - should use the D3 update sequence 
+ * The drawing function - should use the D3 update sequence
  * Function parameters only needed if different kinds of updates are needed
-*=================================================================*/
+ *=================================================================*/
 
- CAMap.prototype.updateVis = function(){
+CAMap.prototype.updateVis = function(){
     var vis = this;
 
     //get current keyVar value from dropdown
@@ -94,7 +94,7 @@ CAMap.prototype.wrangleData = function(){
     vis.keyYear = parseInt(d3.select("#timeslide2").property("value"));
     console.log(vis.keyYear);
 
-     vis.theYear = d3.select("#getgini").property("value");
+    vis.theYear = d3.select("#getgini").property("value");
 
 
     // Convert TopoJSON to GeoJSON
@@ -105,10 +105,10 @@ CAMap.prototype.wrangleData = function(){
 
     //Set up empty array and then push the relevent year objects into it
 
-     var santaClara;
-     var losAngeles;
-     var sanMateo;
-     var sonoma;
+    var santaClara;
+    var losAngeles;
+    var sanMateo;
+    var sonoma;
 
     var countyDataYear = [];
     for(var i = 0; i < vis.csvCA.length; i++ ) {
@@ -138,28 +138,28 @@ CAMap.prototype.wrangleData = function(){
 
     }
 
-     if (santaClara > losAngeles ) {
-         document.getElementById("amountTo").innerHTML=">";
-     } else if (santaClara < losAngeles) {
-         document.getElementById("amountTo").innerHTML="<";
-     } else {
-         document.getElementById("amountTo").innerHTML="=";
-     }
+    if (santaClara > losAngeles ) {
+        document.getElementById("amountTo").innerHTML=">";
+    } else if (santaClara < losAngeles) {
+        document.getElementById("amountTo").innerHTML="<";
+    } else {
+        document.getElementById("amountTo").innerHTML="=";
+    }
 
-     if (sanMateo > sonoma ) {
-         document.getElementById("amountToNext").innerHTML=">";
-     } else if (sanMateo < sonoma) {
-         document.getElementById("amountToNext").innerHTML="<";
-     } else {
-         document.getElementById("amountToNext").innerHTML="=";
-     }
+    if (sanMateo > sonoma ) {
+        document.getElementById("amountToNext").innerHTML=">";
+    } else if (sanMateo < sonoma) {
+        document.getElementById("amountToNext").innerHTML="<";
+    } else {
+        document.getElementById("amountToNext").innerHTML="=";
+    }
 
     console.log(countyDataYear);
 
     //Create objects that can map to the county Fips code
     var keyById = {};
     var nameById = {};
-    countyDataYear.forEach(function(d) { 
+    countyDataYear.forEach(function(d) {
         keyById[d.countyfip] = d[vis.keyVar];
         nameById[d.countyfip] = d.county;
     });
@@ -168,17 +168,17 @@ CAMap.prototype.wrangleData = function(){
     //Color scale domain
     var domainExtent = d3.extent(d3.values(countyDataYear), function(d) { return d[vis.keyVar]; });
     vis.colorScale.domain(domainExtent);
-    console.log(domainExtent); 
+    console.log(domainExtent);
 
     //Find range and create array of color cutoff points for legend
     var colorBlocksize = (domainExtent[1]-domainExtent[0])/vis.colorBuckets;
     var colorCutoffs = [];
     for (i=0; i<vis.colorBuckets; i++) {
         if (vis.keyVar != "realIncWage") {
-          colorCutoffs.push(Math.round(1000*(domainExtent[0] + i*colorBlocksize))/1000)
+            colorCutoffs.push(Math.round(1000*(domainExtent[0] + i*colorBlocksize))/1000)
         } else {
             colorCutoffs.push(Math.round(domainExtent[0] + i*colorBlocksize))
-        }   
+        }
     };
     console.log(colorCutoffs);
 
@@ -186,12 +186,12 @@ CAMap.prototype.wrangleData = function(){
     vis.tip.html(function(d) {
         if (keyById[d.id] == undefined) {
             return "<strong>County: No Data Available </strong> <span>"  + ///
-            "<br/> <strong>Value: No Data Available </strong> <span>"  + "</span>";
+                "<br/> <strong>Value: No Data Available </strong> <span>"  + "</span>";
         } else {
 
             console.log(d);
             return "<strong>County: </strong> <span>" + nameById[d.id]  + ///
-            "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
+                "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
         }
     });
 
@@ -204,35 +204,36 @@ CAMap.prototype.wrangleData = function(){
         .attr("d", vis.path)
         .style("fill", function(d) {
 
-        if ( isNaN(keyById[d.id]) === true  ) {
+            if ( isNaN(keyById[d.id]) === true  ) {
                 return "#ccc";
             } else {
-                return vis.colorScale(keyById[d.id]); 
+                return vis.colorScale(keyById[d.id]);
             }
         })
         .on('mouseover', vis.tip.show)
-        .on('mouseout', vis.tip.hide);        
+        .on('mouseout', vis.tip.hide);
 
     //Draw boundries, for further use note that I have to set the .boundary class fill to none in css otherwise it messes up paths
     vis.frame.insert("path", ".graticule")
-      .datum(topojson.mesh(vis.caMap, vis.caMap.objects.subunits, function(a, b) { return a !== b; }))
-      .attr("class", "boundary")
-      .attr("d", vis.path);
+        .datum(topojson.mesh(vis.caMap, vis.caMap.objects.subunits, function(a, b) { return a !== b; }))
+        .attr("class", "boundary")
+        .attr("d", vis.path);
 
-    //legend                            
+    //legend
     var legend = vis.frame.selectAll('rect')
         .data(colorbrewer.Purples[vis.colorBuckets])
         .enter()
         .append('rect')
+        .attr("transform","translate(450,-230)")
         .attr("x", 0)
         .attr("y", function(d, i) {
-           return (vis.height-30) - (i * 30);
+            return (vis.height-30) - (i * 30);
         })
-       .attr("width", 15)
-       .attr("height", 30)
-       .style("fill", function(d) {
-           return d;
-       });
+        .attr("width", 15)
+        .attr("height", 30)
+        .style("fill", function(d) {
+            return d;
+        });
 
 
     //legend text
@@ -242,7 +243,7 @@ CAMap.prototype.wrangleData = function(){
         .append('text')
         .attr("class", "legend-text")
         .attr("transform", function(d, i) {
-            return "translate(" + (18) + "," + ((vis.height-15) - i*30) + ")"
+            return "translate(" + (472) + "," + ((vis.height-240) - i*30) + ")"
         })
         .text(function(d) {
             return "> " + d;
@@ -348,8 +349,8 @@ CAMap.prototype.wrangleData = function(){
 }
 
 /*=================================================================
-* Update Colors etc. with new keyVar/keyYear
-*=================================================================*/
+ * Update Colors etc. with new keyVar/keyYear
+ *=================================================================*/
 CAMap.prototype.updateColors = function(){
     var vis = this;
     console.log(vis.keyVar);
@@ -366,7 +367,7 @@ CAMap.prototype.updateColors = function(){
     //Create objects that can map to the county Fips code
     var keyById = {};
     var nameById = {};
-    countyDataYear.forEach(function(d) { 
+    countyDataYear.forEach(function(d) {
         keyById[d.countyfip] = d[vis.keyVar];
         nameById[d.countyfip] = d.county;
     });
@@ -382,7 +383,7 @@ CAMap.prototype.updateColors = function(){
     var colorCutoffs = [];
     for (i=0; i<vis.colorBuckets; i++) {
         if (vis.keyVar != "realIncWage") {
-          colorCutoffs.push(Math.round(1000*(domainExtent[0] + i*colorBlocksize))/1000)
+            colorCutoffs.push(Math.round(1000*(domainExtent[0] + i*colorBlocksize))/1000)
         } else {
             colorCutoffs.push(Math.round(domainExtent[0] + i*colorBlocksize))
         }
@@ -393,10 +394,10 @@ CAMap.prototype.updateColors = function(){
     vis.tip.html(function(d) {
         if (keyById[d.id] == undefined) {
             return "<strong>County: No Data Available </strong> <span>"  + ///
-            "<br/> <strong>Value: No Data Available </strong> <span>"  + "</span>";
+                "<br/> <strong>Value: No Data Available </strong> <span>"  + "</span>";
         } else {
             return "<strong>County: </strong> <span>" + nameById[d.id]  + ///
-            "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
+                "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
         }
     });
 
@@ -405,11 +406,11 @@ CAMap.prototype.updateColors = function(){
         .selectAll("path")
         .transition()
         .duration(1000)
-        .style("fill", function(d) { 
+        .style("fill", function(d) {
             if ( isNaN(keyById[d.id]) === true  ) {
                 return "#ccc";
             } else {
-                return vis.colorScale(keyById[d.id]); 
+                return vis.colorScale(keyById[d.id]);
             }
         });
 
@@ -426,9 +427,10 @@ CAMap.prototype.updateColors = function(){
 
     //Enter + Update
     text.text(function(d) {
-            return "> " + d;
+        return "> " + d;
     });
 
     //Exit
     text.exit().remove();
 }
+
