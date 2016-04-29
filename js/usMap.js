@@ -33,7 +33,7 @@ USMap.prototype.initVis = function(){
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
     //Set colorscale # of buckets
-    vis.colorBuckets = 6;
+    vis.colorBuckets = 7;
 
     //Set colorscale range
     vis.colorScale = d3.scale.quantize()
@@ -47,6 +47,9 @@ USMap.prototype.initVis = function(){
     //Define default path generator
     vis.path = d3.geo.path()
         .projection(vis.projection);
+
+    //Define percentage format
+    vis.percent = d3.format("2.1%");
 
     //Initialize tooltip
     vis.tipx = d3.tip()
@@ -111,16 +114,10 @@ USMap.prototype.updateVis = function(){
     });
     console.log(keyById);
 
-    //Color scale domain
-    var domainExtent = d3.extent(d3.values(stateDataYear), function(d) { return d[vis.keyVar]; });
-    vis.colorScale.domain(domainExtent);
-    console.log(domainExtent);
-
-    /*/Alternate color scale domain - constant scale
+    //Alternate color scale domain - constant scale
      var domainExtent = d3.extent(d3.values(vis.csvUS), function(d) { return d[vis.keyVar]; });
      vis.colorScale.domain(domainExtent);
      console.log(domainExtent);
-     );*/
 
     //Find range and create array of color cutoff points for legend
     var colorBlocksize = (domainExtent[1]-domainExtent[0])/vis.colorBuckets;
@@ -136,8 +133,13 @@ USMap.prototype.updateVis = function(){
 
     //add tip function
     vis.tipx.html(function(d) {
-        return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
+        if (vis.keyVar == "pctTechnicalWorker" || vis.keyVar == "unemployementRate" ) {
+            return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
+            "<br/> <strong>Value: </strong> <span>" + vis.percent(keyById[d.id])  + "</span>";
+        } else {
+            return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
             "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
+        }
     });
 
     //Draw map
@@ -189,22 +191,33 @@ USMap.prototype.updateVis = function(){
             return "translate(" + (18) + "," + ((vis.height/3+15) - i*30) + ")"
         })
         .text(function(d) {
-            return "> " + d;
+            if (vis.keyVar == "pctTechnicalWorker" || vis.keyVar == "unemployementRate" ) {
+                return "> " + vis.percent(d);
+            }
+            else {
+                return "> " + d;
+            }
         });
 
-    //JQuery to update Colors on dropdown change or timeslide change, pass in new value of dropdown selection and year
     $(document).ready(function() {
 
         $('#stat-type').on('change', function() {
             vis.keyVar = this.value;
             vis.updateColors();
         });
-
-        $('#timeslide').on('change', function() {
-            vis.keyYear = parseInt(this.value);
-            $('#range').text(vis.keyYear);
+    
+        var $element = $('#timeslide');
+        var $handle;
+        
+        $element
+          .rangeslider({
+            polyfill: false,
+          })
+          .on('input', function() {
+            vis.keyYear = parseInt(this.value);  
+            $('#range').text(vis.keyYear)
             vis.updateColors();
-        });
+          });
     });
 }
 
@@ -213,8 +226,6 @@ USMap.prototype.updateVis = function(){
  *=================================================================*/
 USMap.prototype.updateColors = function(){
     var vis = this;
-    console.log(vis.keyVar);
-    console.log(vis.keyYear);
 
     //Set up empty array and then push the relevent year objects into it
     var stateDataYear = [];
@@ -231,12 +242,10 @@ USMap.prototype.updateColors = function(){
         keyById[d.statefip] = d[vis.keyVar];
         nameById[d.statefip] = d.state;
     });
-    console.log(keyById);
 
-    //Color scale domain
-    var domainExtent = d3.extent(d3.values(stateDataYear), function(d) { return d[vis.keyVar]; });
-    vis.colorScale.domain(domainExtent);
-    console.log(domainExtent);
+    //Alternate color scale domain - constant scale
+     var domainExtent = d3.extent(d3.values(vis.csvUS), function(d) { return d[vis.keyVar]; });
+     vis.colorScale.domain(domainExtent);
 
     //Find range and create array of color cutoff points for legend
     var colorBlocksize = (domainExtent[1]-domainExtent[0])/vis.colorBuckets;
@@ -248,12 +257,16 @@ USMap.prototype.updateColors = function(){
             colorCutoffs.push(Math.round(domainExtent[0] + i*colorBlocksize))
         }
     };
-    console.log(colorCutoffs);
 
     //Update tip function
     vis.tipx.html(function(d) {
-        return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
+        if (vis.keyVar == "pctTechnicalWorker" || vis.keyVar == "unemployementRate" ) {
+            return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
+            "<br/> <strong>Value: </strong> <span>" + vis.percent(keyById[d.id])  + "</span>";
+        } else {
+            return "<strong>State: </strong> <span>" + nameById[d.id]  + ///
             "<br/> <strong>Value: </strong> <span>" + keyById[d.id]  + "</span>";
+        }
     });
 
     //Update choropleth colors
@@ -282,7 +295,12 @@ USMap.prototype.updateColors = function(){
 
     //Enter + Update
     text.text(function(d) {
-        return "> " + d;
+        if (vis.keyVar == "pctTechnicalWorker" || vis.keyVar == "unemployementRate" ) {
+            return "> " + vis.percent(d);
+        }
+        else {
+            return "> " + d;
+        }
     });
 
     //Exit
