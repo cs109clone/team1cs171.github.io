@@ -21,6 +21,12 @@
 (function($) {
     "use strict";
 
+    var states = {"AL":"Alabama","AK":"Alaska","AZ":"Arizona","AR":"Arkansas","CA":"California","CO":"Colorado","CT":"Connecticut","DE":"Delaware","DC":"District of Columbia","FL":"Florida","GA":"Georgia","HI":"Hawaii","ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine","MD":"Maryland","MA":"Massachusetts","MI":"Michigan","MN":"Minnesota","MS":"Mississippi","MO":"Missouri","MT":"Montana","NE":"Nebraska","NV":"Nevada","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NY":"New York","NC":"North Carolina","ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island","SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia","WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming"};
+
+    var getStateFullName = function(stateAbbr) {
+        return states[stateAbbr];
+    }
+
 
     function MotionChart(container, options) {
 
@@ -97,7 +103,7 @@
                 priv.dom.$chart = $("    <div class='chart' id='tab0'>" + "    </div>").appendTo(priv.dom.$content);
                 priv.dom.$menu = $("").appendTo(priv.dom.$chart);
                 //Billy comment out priv.dom.$menu = $("        <div class='myMenuTestSub'>" + "            <div></div>" + "        </div>").appendTo(priv.dom.$chart);
-                priv.dom.$svg = $("        <div class='svg'></div>").appendTo(priv.dom.$chart);
+                priv.dom.$svg = $("        <div class='svg' ></div>").appendTo(priv.dom.$chart);
                 priv.dom.$timeline = $("        <div class='timeline'>" + "        </div>").appendTo(priv.dom.$chart);
                 priv.dom.$play = $("            <div class='control-button playpause play'></div>").appendTo(priv.dom.$timeline);
                 temp = $("            <div class='speed-control'></div>").appendTo(priv.dom.$timeline);
@@ -1294,6 +1300,7 @@
             /**
              *    Set popover with metadata for each circle
              */
+
             setPopover: function(d) {
 				var i, outputObject, values, keys, output, x;
                 return $(d3.select(this).select('circle')).popover({
@@ -1312,10 +1319,27 @@
 
                             for (i = 0; i < keys.length; i++)
 							{
-                                /*if (values[i] == "CT") {
-                                    values[i] = "Connecticut";
-                                    console.log(values[i]);
-                                }*/
+
+                                values[i] = values[i].trim();
+
+                                if(keys[i] == "State") {
+                                    values[i] = states[values[i]];
+                                }
+
+                                if(keys[i] == "County") {
+
+                                    if(values[i] == "L.A.") {
+                                        values[i] = "Los Angeles";
+                                    } else if (values[i] == "S M") {
+                                        values[i] = "San Mateo";
+                                    } else if (values[i] == "So") {
+                                        values[i] = "Sonoma";
+                                    } else {
+                                        values[i] = "Santa Clara";
+                                    }
+
+                                }
+
 
 								output += keys[i] + " : " + values[i] + "<br>";
 							}
