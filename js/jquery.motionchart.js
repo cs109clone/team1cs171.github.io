@@ -179,7 +179,7 @@
 
                         //display recession background & displays year on tooltip
 
-                        if(keyNames[priv.dom.$mainSlider.slider("value")] == "1998" | keyNames[priv.dom.$mainSlider.slider("value")] == "1999" | keyNames[priv.dom.$mainSlider.slider("value")] == "2000" | keyNames[priv.dom.$mainSlider.slider("value")] == "2008" | keyNames[priv.dom.$mainSlider.slider("value")] == "2009" | keyNames[priv.dom.$mainSlider.slider("value")] == "2010") {
+                        if(keyNames[priv.dom.$mainSlider.slider("value")] == "1980" | keyNames[priv.dom.$mainSlider.slider("value")] == "1981" | keyNames[priv.dom.$mainSlider.slider("value")] == "1982" | keyNames[priv.dom.$mainSlider.slider("value")] == "1990" | keyNames[priv.dom.$mainSlider.slider("value")] == "1991" | keyNames[priv.dom.$mainSlider.slider("value")] == "2001" | keyNames[priv.dom.$mainSlider.slider("value")] == "2008"  | keyNames[priv.dom.$mainSlider.slider("value")] == "2009") {
                             document.getElementById("econ-state-us").style.display = "block";
                             document.getElementById("econ-state-ca").style.display = "block";
                             //document.getElementById("ca-motion").style.backgroundColor = "#E6E6E6";
