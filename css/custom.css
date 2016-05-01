@@ -85,8 +85,9 @@ img{
     font-size:27px;
     line-height:1.4;
     font-weight:300;
-    color:#fff;
+    color:#a8a8a8;
 }
+
 
 .jumbotron-fluid {
     padding:0;
@@ -935,6 +936,8 @@ section, .parallax {
 #footer .footer-info {
     padding-top: 25px;
 }
+
+
 
 /*Mike added these for rangesliders below*/
 
