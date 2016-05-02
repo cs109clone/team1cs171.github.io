@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<script type="text/javascript">
 		//Redirect it warning page if mobile
-		if (/Mobi/.test(navigator.userAgent)) {
+		if (screen.width <= 800 | (navigator.userAgent.match(/iPhone/i)) | (navigator.userAgent.match(/iPod/i))) {
 
 			if(Session["visited"]) {
 				window.location = "https://team1cs171.github.io"; //redirect to original location
