@@ -111,20 +111,13 @@ function createVis(usMap, caMap, csvUS, csvCA, csvNational) {
     var usMap = new USMap("usa-map", usMap, csvUS);
 
 
-
+    /*var giniLine = new GiniLineGraph("gini-line", csvUS);*/
 
 
     var wageLine = new WageLineGraph("wage-line", csvNational);
 
 }
 
-//Set session variable for mobile visitors so that return visits don't flash warning page
-/*$('#continue-desktop').click(function(e) {
-
-    sessionStorage.visit = 2;
-    window.location = "https://team1cs171.github.io";
-
-});/*
 
 
 
