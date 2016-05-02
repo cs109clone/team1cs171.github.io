@@ -119,12 +119,12 @@ function createVis(usMap, caMap, csvUS, csvCA, csvNational) {
 }
 
 //Set session variable for mobile visitors so that return visits don't flash warning page
-$('#continue-desktop').click(function(e) {
+/*$('#continue-desktop').click(function(e) {
 
     sessionStorage.visit = 2;
     window.location = "https://team1cs171.github.io";
 
-});
+});/*
 
 
 
