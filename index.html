@@ -687,17 +687,15 @@
 	document.getElementById("econ-state-ca").style.display = "none";
 
 </script>
-<!--
-<script>
-	$(document).ready(function(){
-		function fix_height(){
-			var h = $("#tray").height();
-			$("#preview").attr("height", (($(window).height()) - h) + "px");
+<script type="text/javascript">
+	//Redirect it warning page if mobile
+	if (screen.width <= 800) {
+		if(Session["visited"]) {
+			window.location = "https://team1cs171.github.io"; //redirect to original location
+		} else {
+			window.location = "https://team1cs171.github.io/mmsg.html";
 		}
-		$(window).resize(function(){ fix_height(); }).resize();
-		//$("#preview").contentWindow.focus();
-	});
+	}
 </script>
--->
 </body>
 </html>
