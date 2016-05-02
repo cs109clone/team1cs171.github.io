@@ -30,6 +30,8 @@
 		//Redirect it warning page if mobile
 		if (screen.width <= 800 | (navigator.userAgent.match(/iPhone/i)) | (navigator.userAgent.match(/iPod/i))) {
 
+			alert("GO");
+
 			if(Session["visited"]) {
 				window.location = "https://team1cs171.github.io"; //redirect to original location
 			} else {
