@@ -27,14 +27,16 @@
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,700,900' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<script type="text/javascript">
+
 		//Redirect it warning page if mobile
 		if (screen.width <= 800 | (navigator.userAgent.match(/iPhone/i)) | (navigator.userAgent.match(/iPod/i))) {
-alert(Session["visited"]);
-			if(Session["visited"] == 2) {
-				window.location = "https://team1cs171.github.io"; //redirect to original location
+
+			if (sessionStorage) {
+				window.location = "https://team1cs171.github.io";
 			} else {
 				window.location = "https://team1cs171.github.io/mmsg.html";
 			}
+
 		}
 	</script>
 
