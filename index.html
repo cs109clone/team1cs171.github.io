@@ -31,7 +31,7 @@
 		//Redirect it warning page if mobile
 		if (screen.width <= 800 | (navigator.userAgent.match(/iPhone/i)) | (navigator.userAgent.match(/iPod/i))) {
 
-			if (sessionStorage) {
+			if (sessionStorage.visit) {
 				window.location = "https://team1cs171.github.io";
 			} else {
 				window.location = "https://team1cs171.github.io/mmsg.html";

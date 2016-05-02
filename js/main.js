@@ -121,7 +121,7 @@ function createVis(usMap, caMap, csvUS, csvCA, csvNational) {
 //Set session variable for mobile visitors so that return visits don't flash warning page
 $('#continue-desktop').click(function(e) {
 
-    sessionStorage.test = 2;
+    sessionStorage.visit = 2;
 
 });
 
