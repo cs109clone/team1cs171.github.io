@@ -689,7 +689,7 @@
 </script>
 <script type="text/javascript">
 	//Redirect it warning page if mobile
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	if (/Mobi/.test(navigator.userAgent)) {
 
 		if(Session["visited"]) {
 			window.location = "https://team1cs171.github.io"; //redirect to original location
