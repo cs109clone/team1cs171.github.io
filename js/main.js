@@ -122,6 +122,7 @@ function createVis(usMap, caMap, csvUS, csvCA, csvNational) {
 $('#continue-desktop').click(function(e) {
 
     sessionStorage.visit = 2;
+    window.location = "https://team1cs171.github.io";
 
 });
 
