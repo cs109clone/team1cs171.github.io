@@ -329,7 +329,7 @@
 			<div class="row">
 				<div class="col-lg-9">
 					<div id="econ-state-us">RECESSION</div>
-					<div class="motion-container"><div class="motionchart" id="us-motion"></div></div>
+					<div class="motion-container"><div class="motionchart" id="us-motion" height="500px" width="600px"></div></div>
 				</div>
 				<div class="col-lg-3">
 					<div class="rp-chart2">
@@ -569,7 +569,7 @@
 			<div class="row">
 				<div class="col-lg-9">
 					<div id="econ-state-ca">RECESSION</div>
-					<div class="motion-container"><div class="countyMotionChart" id="ca-motion"></div></div>
+					<div class="motion-container"><div class="countyMotionChart" id="ca-motion" height="500px" width="600px"></div></div>
 				</div>
 				<div class="col-lg-3">
 					<div class="rp-chart2">
@@ -589,7 +589,7 @@
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="conclusion-area text-center">
-						<p>In viewing economic inequality through the looking glass of California, Skill-Biaed technical change plays a major role.
+						<p>In viewing economic inequality through the looking glass of California, Skill-Biased technical change plays a major role.
 							While many Americans agree that economic inequality is a big problem, most generally oppose the concept of wealth / income redistribution.</p>
 					</div>
 				</div>
@@ -637,6 +637,7 @@
 <script src="js/jquery.easing.min.js"></script>
 
 <!-- Visualization objects -->
+
 <script src="js/usMap.js"></script>
 <script src="js/caMap.js"></script>
 <script src="js/lineGraph.js"></script>
@@ -645,7 +646,7 @@
 <script src="js/loadStateData.js"></script>
 <script src="js/loadCountyData.js"></script>
 <script src="js/main.js"></script>
-
+<!--<script src="js/lineGraph2.js"></script>-->
 
 <script src="js/dependencies.min.js"></script>
 <script src="js/custom-bootstrap.js"></script>
@@ -687,18 +688,6 @@
 	document.getElementById("econ-state-ca").style.display = "none";
 
 </script>
-<script type="text/javascript">
 
-	//Redirect it warning page if mobile
-	/*if (screen.width <= 800 | (navigator.userAgent.match(/iPhone/i)) | (navigator.userAgent.match(/iPod/i))) {
-
-		if (sessionStorage.visit) {
-			window.location = "https://team1cs171.github.io";
-		} else {
-			window.location = "https://team1cs171.github.io/mmsg.html";
-		}
-
-	}*/
-</script>
 </body>
 </html>

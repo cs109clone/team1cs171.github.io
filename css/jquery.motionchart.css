@@ -217,6 +217,7 @@ text {
   fill: #ffffff;
 }
 
+
 .mchart .year.label {
   font: 500 196px "Helvetica Neue";
   fill: #ddd;
@@ -226,11 +227,16 @@ text {
   fill: #aaa;
 }
 
-.mchart text.label:hover {
-	fill: red;
-	fill-opacity: 0.75;
-	cursor: pointer;
+.mchart text.label {
+	font-weight: 200;
 }
+.mchart text.label:hover {
+	fill: white; /*Ethan Changed*/
+	/*fill-opacity: 0.75;*/
+	font-weight: 200;
+	/*cursor: pointer;*/
+}
+
 .ui-slider .ui-slider-handle {
 	z-index: 1;
 }
@@ -278,6 +284,8 @@ text {
 	width: 600px;
 	height: 500px;
 }
+
+
 
 @media screen and (max-width:768px) {
 

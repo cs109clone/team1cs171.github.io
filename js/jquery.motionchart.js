@@ -234,6 +234,8 @@
              *    Resize the view
              **/
             resize: function() {
+
+
                 priv.dom.$svg.resizable({
                     minHeight: priv.settings.minHeight - priv.dom.$header.outerHeight(true) - priv.dom.$timeline.outerHeight(true),
                     minWidth: priv.settings.minWidth,
@@ -242,6 +244,7 @@
 						priv.dom.$menu.trigger('mouseleave'); //Close the menu
 					},
                     resize: function(event, ui) {
+
                         priv.dom.$header.outerWidth(priv.dom.$svg.width());
                         priv.dom.$content.width(priv.dom.$svg.width());
                         priv.dom.$chart.outerWidth(priv.dom.$content.width());
@@ -437,19 +440,23 @@
                         };
                     }
                 };
-
-                $.contextMenu(defaultItems);
+                //Ethan Removed
+               /* */$.contextMenu(defaultItems);
 
                 //X-Axis Menu
-                $.contextMenu({
+               /* $.contextMenu({
                     selector: "text.x.label",
                     trigger: "none",
                     build: function($trigger) {
                         return {
                             items: $trigger.data("items"),
                             position: function(opt, x, y) {
-                                opt.determinePosition.call(this, opt.$menu);
-                                return;
+
+                                console.log($trigger.data("items")[0]); //menu options range from 0 - 8
+
+                                    opt.determinePosition.call(this, opt.$menu);
+                                    return;
+
                             },
                             determinePosition: function($menu) {
                                 $menu.css('display', 'block').position({
@@ -461,10 +468,10 @@
                             }
                         };
                     }
-                });
+                });*/
 
                 //Y-Axis Menu
-              $.contextMenu({
+              /*$.contextMenu({
                     selector: "text.y.label",
                     trigger: "none",
                     build: function($trigger) {
@@ -484,7 +491,7 @@
                             }
                         };
                     }
-                });
+                });*/
 
                 //Sliding Popover Menu Mapping
                 /**
@@ -1147,6 +1154,7 @@
                 yAxisOrient = d3.svg.axis().orient("left");
 
                 // Add the x-axis.
+
                 xAxis = svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxisOrient);
 
                 // Add the y-axis.
@@ -1192,8 +1200,9 @@
 
                 // Finally move all circles to their new respective positions
                 node.attr("transform", function(d) {
-                    return "translate(" + xScale(chart.x(d)) + //set x postion
-									"," + yScale(chart.y(d)) + ")";	//set y position
+                    console.log(d);
+                        return "translate(" + xScale(chart.x(d)) + //set x postion
+                            "," + yScale(chart.y(d)) + ")";	//set y position
 
                 });
 
@@ -1255,7 +1264,9 @@
                             return chart.category(d).substring(0, radiusScale(chart.radius(d)) / 2);
                         }
                     });
-                    return "translate(" + xScale(chart.x(d)) + "," + yScale(chart.y(d)) + ")";
+
+                        return "translate(" + xScale(chart.x(d)) + "," + yScale(chart.y(d)) + ")";
+
                 }).select('circle').attr("r", function(d) {
                     return radiusScale(chart.radius(d));
                 }) //Set radius
