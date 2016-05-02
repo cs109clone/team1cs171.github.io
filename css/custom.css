@@ -772,7 +772,7 @@ section, .parallax {
 
 }
 
-.rp .container, .question .container, .case-study .container {
+.rp .container, .question .container, .case-study .container, .tech-effect .container, .cali-tech-effect .container {
     min-height: 900px;
 }
 
