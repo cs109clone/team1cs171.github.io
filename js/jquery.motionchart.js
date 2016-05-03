@@ -454,6 +454,9 @@
 
                                 console.log($trigger.data("items")[0]); //menu options range from 0 - 8
 
+
+
+
                                     opt.determinePosition.call(this, opt.$menu);
                                     return;
 
@@ -498,7 +501,7 @@
                  *    Note: Class name has to be MapEnum.$name+'Map', so x would be xMap and color would be colorMap
                  *    These elements (td) must only have one class.
                  **/
-                $.contextMenu({
+               /* $.contextMenu({
                     selector: ".keyMap, .xMap, .yMap, .sizeMap, .colorMap, .categoryMap",
                     trigger: "none",
                     build: function($trigger) {
@@ -526,7 +529,7 @@
                             }
                         };
                     }
-                });
+                });*/
 
       
 
