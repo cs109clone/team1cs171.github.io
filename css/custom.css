@@ -453,30 +453,34 @@ img{
     }
 
 
-input.intro.col-md-6{
-    width:40.5%;
-    margin: 15px 15px 0 58px;
-}
+    input.intro.col-md-6{
+        width:40.5%;
+        margin: 15px 15px 0 58px;
+    }
 
-textarea.intro.col-md-12 {
-     margin: 15px 15px 0 58px;
-}
+    textarea.intro.col-md-12 {
+         margin: 15px 15px 0 58px;
+    }
 
-button#submit.intro.submit{
-    margin: 15px 15px 0 42px;
-}
+    button#submit.intro.submit{
+        margin: 15px 15px 0 42px;
+    }
 
-#amountTo,#amountToNext {
-    display: none;
-}
+    #amountTo,#amountToNext {
+        display: none;
+    }
 
-#view-control {
-    font-size: 18px;
-}
+    #view-control {
+        font-size: 18px;
+    }
 
-.navbar-header {
-    width: 800px;
-}
+    .navbar-header {
+        width: 800px;
+    }
+
+    .rp .container, .question .container, .case-study .container, .tech-effect .container, .cali-tech-effect .container {
+        min-height: 600px;
+    }
 
 }
 
