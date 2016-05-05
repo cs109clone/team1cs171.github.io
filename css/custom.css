@@ -474,8 +474,8 @@ button#submit.intro.submit{
     font-size: 18px;
 }
 
-.navbar {
-    max-width: 800px;
+.wrapper {
+    width: 800px;
 }
 
 }
